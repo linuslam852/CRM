@@ -2,17 +2,11 @@ import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:8088"
 export function doGet(url, params){
-    axios({
+    return axios({
         method: "get",
         url: url,
         params: params,
         dataType: "json"
-    }).then(function(rep){
-        var s = "";
-        rep.data.forEach(function (stu){
-            s += stu.name + "-----------" + stu.age +"<br>";
-        });
-        document.getElementById("mydiv").innerHTML = s;
     })
 }
 

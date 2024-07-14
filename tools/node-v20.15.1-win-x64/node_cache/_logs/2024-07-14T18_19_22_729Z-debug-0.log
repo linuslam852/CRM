@@ -1,0 +1,46 @@
+0 verbose cli D:\CRM\tools\node-v20.15.1-win-x64\node.exe D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.7.0
+2 info using node@v20.15.1
+3 silly config:load:file:D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\npmrc
+4 silly config:load:file:D:\CRM\code\crm-front\.npmrc
+5 silly config:load:file:C:\Users\xiaom\.npmrc
+6 silly config:load:file:D:\CRM\tools\node-v20.15.1-win-x64\node_global\etc\npmrc
+7 verbose title npm i @element-plus/icon-vue
+8 verbose argv "i" "@element-plus/icon-vue" "--save"
+9 verbose logfile logs-max:10 dir:D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-14T18_19_22_729Z-
+10 verbose logfile D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-14T18_19_22_729Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest @element-plus/icon-vue@*
+15 http fetch GET 404 https://registry.npmjs.org/@element-plus%2ficon-vue 730ms (cache skip)
+16 silly placeDep ROOT @element-plus/icon-vue@ OK for: crm-front@0.0.0 want: *
+17 verbose stack HttpErrorGeneral: 404 Not Found - GET https://registry.npmjs.org/@element-plus%2ficon-vue - Not found
+17 verbose stack     at D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\node_modules\npm-registry-fetch\lib\check-response.js:95:15
+17 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+17 verbose stack     at async RegistryFetcher.packument (D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\node_modules\pacote\lib\registry.js:91:19)
+17 verbose stack     at async RegistryFetcher.manifest (D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\node_modules\pacote\lib\registry.js:129:23)
+17 verbose stack     at async #nodeFromEdge (D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:1055:19)
+17 verbose stack     at async #buildDepStep (D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:923:11)
+17 verbose stack     at async Arborist.buildIdealTree (D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:203:7)
+17 verbose stack     at async Promise.all (index 1)
+17 verbose stack     at async Arborist.reify (D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:131:5)
+17 verbose stack     at async Install.exec (D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\lib\commands\install.js:150:5)
+18 verbose statusCode 404
+19 verbose pkgid @element-plus/icon-vue@*
+20 verbose cwd D:\CRM\code\crm-front
+21 verbose Windows_NT 10.0.19045
+22 verbose node v20.15.1
+23 verbose npm  v10.7.0
+24 error code E404
+25 error 404 Not Found - GET https://registry.npmjs.org/@element-plus%2ficon-vue - Not found
+26 error 404
+27 error 404  '@element-plus/icon-vue@*' is not in this registry.
+28 error 404
+28 error 404 Note that you can also install from a
+29 error 404 tarball, folder, http url, or git url.
+30 verbose exit 1
+31 verbose code 1
+32 silly unfinished npm timer reify 1720981163220
+33 silly unfinished npm timer reify:loadTrees 1720981163225
+34 error A complete log of this run can be found in: D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-14T18_19_22_729Z-debug-0.log

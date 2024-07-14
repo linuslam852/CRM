@@ -1,5 +1,7 @@
 <script>
 import {doGet, doPost} from "../http/httpRequest";
+import {messageTip} from "../utils/util.js";
+
 
 export default {
   name: "LoginView",
@@ -29,8 +31,25 @@ export default {
           let formData = new FormData();
           formData.append("loginAct",this.user.loginAct);
           formData.append("loginPwd",this.user.loginPwd);
+          formData.append("rememberMe",this.user.rememberMe);
           doPost("/api/login",formData).then((resp)=>{
             console.log(resp);
+            if(resp.data.code === 200){
+              //登入成功
+              messageTip("登入成功","success");
+              //存儲jwt
+              if(this.user.rememberMe === true){
+                window.localStorage.setItem("crm_token",resp.data.data);
+              } else {
+                window.sessionStorage.setItem("crm_token",resp.data.data);
+              }
+
+              //跳轉到系統主頁面
+              window.location.href = "./dashboard";
+            }else{
+              //登入失敗
+              messageTip("登入失敗","error");
+            }
           });
         }
       })
@@ -66,7 +85,7 @@ export default {
         </el-form-item>
 
         <el-form-item>
-          <el-checkbox label="記住我" name="rememberMe">
+          <el-checkbox label="記住我" v-model="user.rememberMe">
           </el-checkbox>
         </el-form-item>
 

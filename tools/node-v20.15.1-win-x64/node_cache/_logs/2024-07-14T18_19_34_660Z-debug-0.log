@@ -1,0 +1,270 @@
+0 verbose cli D:\CRM\tools\node-v20.15.1-win-x64\node.exe D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.7.0
+2 info using node@v20.15.1
+3 silly config:load:file:D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\npmrc
+4 silly config:load:file:D:\CRM\code\crm-front\.npmrc
+5 silly config:load:file:C:\Users\xiaom\.npmrc
+6 silly config:load:file:D:\CRM\tools\node-v20.15.1-win-x64\node_global\etc\npmrc
+7 verbose title npm i @element-plus/icons-vue
+8 verbose argv "i" "@element-plus/icons-vue" "--save"
+9 verbose logfile logs-max:10 dir:D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-14T18_19_34_660Z-
+10 verbose logfile D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-14T18_19_34_660Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest @element-plus/icons-vue@*
+15 http fetch GET 200 https://registry.npmjs.org/@element-plus%2ficons-vue 407ms (cache revalidated)
+16 silly fetch manifest vue@^3.4.29
+17 http fetch GET 200 https://registry.npmjs.org/vue 40ms (cache revalidated)
+18 silly fetch manifest typescript@*
+19 http fetch GET 200 https://registry.npmjs.org/typescript 56ms (cache revalidated)
+20 silly placeDep ROOT @element-plus/icons-vue@2.3.1 REPLACE for: crm-front@0.0.0 want: *
+21 silly reify moves {}
+22 silly audit bulk request {
+22 silly audit   '@babel/parser': [ '7.24.7' ],
+22 silly audit   '@ctrl/tinycolor': [ '3.6.1' ],
+22 silly audit   '@esbuild/aix-ppc64': [ '0.21.5' ],
+22 silly audit   '@esbuild/android-arm': [ '0.21.5' ],
+22 silly audit   '@esbuild/android-arm64': [ '0.21.5' ],
+22 silly audit   '@esbuild/android-x64': [ '0.21.5' ],
+22 silly audit   '@esbuild/darwin-arm64': [ '0.21.5' ],
+22 silly audit   '@esbuild/darwin-x64': [ '0.21.5' ],
+22 silly audit   '@esbuild/freebsd-arm64': [ '0.21.5' ],
+22 silly audit   '@esbuild/freebsd-x64': [ '0.21.5' ],
+22 silly audit   '@esbuild/linux-arm': [ '0.21.5' ],
+22 silly audit   '@esbuild/linux-arm64': [ '0.21.5' ],
+22 silly audit   '@esbuild/linux-ia32': [ '0.21.5' ],
+22 silly audit   '@esbuild/linux-loong64': [ '0.21.5' ],
+22 silly audit   '@esbuild/linux-mips64el': [ '0.21.5' ],
+22 silly audit   '@esbuild/linux-ppc64': [ '0.21.5' ],
+22 silly audit   '@esbuild/linux-riscv64': [ '0.21.5' ],
+22 silly audit   '@esbuild/linux-s390x': [ '0.21.5' ],
+22 silly audit   '@esbuild/linux-x64': [ '0.21.5' ],
+22 silly audit   '@esbuild/netbsd-x64': [ '0.21.5' ],
+22 silly audit   '@esbuild/openbsd-x64': [ '0.21.5' ],
+22 silly audit   '@esbuild/sunos-x64': [ '0.21.5' ],
+22 silly audit   '@esbuild/win32-arm64': [ '0.21.5' ],
+22 silly audit   '@esbuild/win32-ia32': [ '0.21.5' ],
+22 silly audit   '@esbuild/win32-x64': [ '0.21.5' ],
+22 silly audit   '@floating-ui/core': [ '1.6.4' ],
+22 silly audit   '@floating-ui/dom': [ '1.6.7' ],
+22 silly audit   '@floating-ui/utils': [ '0.2.4' ],
+22 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.0' ],
+22 silly audit   '@sxzz/popperjs-es': [ '2.11.7' ],
+22 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-android-arm64': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-darwin-arm64': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-darwin-x64': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-linux-powerpc64le-gnu': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.18.1' ],
+22 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.18.1' ],
+22 silly audit   '@types/estree': [ '1.0.5' ],
+22 silly audit   '@types/lodash': [ '4.17.6' ],
+22 silly audit   '@types/lodash-es': [ '4.17.12' ],
+22 silly audit   '@types/web-bluetooth': [ '0.0.16' ],
+22 silly audit   '@vitejs/plugin-vue': [ '5.0.5' ],
+22 silly audit   '@vue/compiler-core': [ '3.4.31' ],
+22 silly audit   '@vue/compiler-dom': [ '3.4.31' ],
+22 silly audit   '@vue/compiler-sfc': [ '3.4.31' ],
+22 silly audit   '@vue/compiler-ssr': [ '3.4.31' ],
+22 silly audit   '@vue/devtools-api': [ '6.6.3' ],
+22 silly audit   '@vue/reactivity': [ '3.4.31' ],
+22 silly audit   '@vue/runtime-core': [ '3.4.31' ],
+22 silly audit   '@vue/runtime-dom': [ '3.4.31' ],
+22 silly audit   '@vue/server-renderer': [ '3.4.31' ],
+22 silly audit   '@vue/shared': [ '3.4.31' ],
+22 silly audit   '@vueuse/core': [ '9.13.0' ],
+22 silly audit   'vue-demi': [ '0.14.8' ],
+22 silly audit   '@vueuse/metadata': [ '9.13.0' ],
+22 silly audit   '@vueuse/shared': [ '9.13.0' ],
+22 silly audit   'async-validator': [ '4.2.5' ],
+22 silly audit   asynckit: [ '0.4.0' ],
+22 silly audit   axios: [ '1.7.2' ],
+22 silly audit   'combined-stream': [ '1.0.8' ],
+22 silly audit   csstype: [ '3.1.3' ],
+22 silly audit   dayjs: [ '1.11.11' ],
+22 silly audit   'delayed-stream': [ '1.0.0' ],
+22 silly audit   'element-plus': [ '2.7.6' ],
+22 silly audit   entities: [ '4.5.0' ],
+22 silly audit   esbuild: [ '0.21.5' ],
+22 silly audit   'escape-html': [ '1.0.3' ],
+22 silly audit   'estree-walker': [ '2.0.2' ],
+22 silly audit   'follow-redirects': [ '1.15.6' ],
+22 silly audit   'form-data': [ '4.0.0' ],
+22 silly audit   fsevents: [ '2.3.3' ],
+22 silly audit   lodash: [ '4.17.21' ],
+22 silly audit   'lodash-es': [ '4.17.21' ],
+22 silly audit   'lodash-unified': [ '1.0.3' ],
+22 silly audit   'magic-string': [ '0.30.10' ],
+22 silly audit   'memoize-one': [ '6.0.0' ],
+22 silly audit   'mime-db': [ '1.52.0' ],
+22 silly audit   'mime-types': [ '2.1.35' ],
+22 silly audit   nanoid: [ '3.3.7' ],
+22 silly audit   'normalize-wheel-es': [ '1.2.0' ],
+22 silly audit   picocolors: [ '1.0.1' ],
+22 silly audit   postcss: [ '8.4.39' ],
+22 silly audit   'proxy-from-env': [ '1.1.0' ],
+22 silly audit   rollup: [ '4.18.1' ],
+22 silly audit   'source-map-js': [ '1.2.0' ],
+22 silly audit   vite: [ '5.3.3' ],
+22 silly audit   vue: [ '3.4.31' ],
+22 silly audit   'vue-router': [ '4.4.0' ],
+22 silly audit   '@element-plus/icons-vue': [ '2.3.1' ]
+22 silly audit }
+23 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\fsevents
+24 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\fsevents' ]
+25 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-win32-ia32-msvc
+26 silly reify mark deleted [
+26 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-win32-ia32-msvc'
+26 silly reify ]
+27 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-win32-arm64-msvc
+28 silly reify mark deleted [
+28 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-win32-arm64-msvc'
+28 silly reify ]
+29 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-x64-musl
+30 silly reify mark deleted [
+30 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-x64-musl'
+30 silly reify ]
+31 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-x64-gnu
+32 silly reify mark deleted [
+32 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-x64-gnu'
+32 silly reify ]
+33 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-s390x-gnu
+34 silly reify mark deleted [
+34 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-s390x-gnu'
+34 silly reify ]
+35 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-riscv64-gnu
+36 silly reify mark deleted [
+36 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-riscv64-gnu'
+36 silly reify ]
+37 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-powerpc64le-gnu
+38 silly reify mark deleted [
+38 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-powerpc64le-gnu'
+38 silly reify ]
+39 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-arm64-musl
+40 silly reify mark deleted [
+40 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-arm64-musl'
+40 silly reify ]
+41 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-arm64-gnu
+42 silly reify mark deleted [
+42 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-arm64-gnu'
+42 silly reify ]
+43 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-arm-musleabihf
+44 silly reify mark deleted [
+44 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-arm-musleabihf'
+44 silly reify ]
+45 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-arm-gnueabihf
+46 silly reify mark deleted [
+46 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-arm-gnueabihf'
+46 silly reify ]
+47 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-darwin-x64
+48 silly reify mark deleted [
+48 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-darwin-x64'
+48 silly reify ]
+49 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-darwin-arm64
+50 silly reify mark deleted [
+50 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-darwin-arm64'
+50 silly reify ]
+51 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-android-arm64
+52 silly reify mark deleted [
+52 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-android-arm64'
+52 silly reify ]
+53 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-android-arm-eabi
+54 silly reify mark deleted [
+54 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-android-arm-eabi'
+54 silly reify ]
+55 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\win32-ia32
+56 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\win32-ia32' ]
+57 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\win32-arm64
+58 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\win32-arm64' ]
+59 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\sunos-x64
+60 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\sunos-x64' ]
+61 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\openbsd-x64
+62 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\openbsd-x64' ]
+63 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\netbsd-x64
+64 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\netbsd-x64' ]
+65 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-x64
+66 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-x64' ]
+67 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-s390x
+68 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-s390x' ]
+69 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-riscv64
+70 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-riscv64' ]
+71 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-ppc64
+72 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-ppc64' ]
+73 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-mips64el
+74 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-mips64el' ]
+75 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-loong64
+76 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-loong64' ]
+77 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-ia32
+78 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-ia32' ]
+79 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-arm64
+80 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-arm64' ]
+81 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-arm
+82 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-arm' ]
+83 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\freebsd-x64
+84 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\freebsd-x64' ]
+85 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\freebsd-arm64
+86 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\freebsd-arm64' ]
+87 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\darwin-x64
+88 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\darwin-x64' ]
+89 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\darwin-arm64
+90 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\darwin-arm64' ]
+91 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\android-x64
+92 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\android-x64' ]
+93 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\android-arm64
+94 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\android-arm64' ]
+95 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\android-arm
+96 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\android-arm' ]
+97 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\aix-ppc64
+98 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\aix-ppc64' ]
+99 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 191ms
+100 silly audit report {}
+101 silly ADD
+102 silly ADD
+103 silly ADD
+104 silly ADD
+105 silly ADD
+106 silly ADD
+107 silly ADD
+108 silly ADD
+109 silly ADD
+110 silly ADD
+111 silly ADD
+112 silly ADD
+113 silly ADD
+114 silly ADD
+115 silly ADD
+116 silly ADD
+117 silly ADD
+118 silly ADD
+119 silly ADD
+120 silly ADD
+121 silly ADD
+122 silly ADD
+123 silly ADD
+124 silly ADD
+125 silly ADD
+126 silly ADD
+127 silly ADD
+128 silly ADD
+129 silly ADD
+130 silly ADD
+131 silly ADD
+132 silly ADD
+133 silly ADD
+134 silly ADD
+135 silly ADD
+136 silly ADD
+137 silly ADD
+138 silly ADD
+139 verbose exit 0
+140 info ok
