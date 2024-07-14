@@ -1,0 +1,401 @@
+0 verbose cli D:\CRM\tools\node-v20.15.1-win-x64\node.exe D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.7.0
+2 info using node@v20.15.1
+3 silly config:load:file:D:\CRM\tools\node-v20.15.1-win-x64\node_modules\npm\npmrc
+4 silly config:load:file:D:\CRM\code\crm-front\.npmrc
+5 silly config:load:file:C:\Users\xiaom\.npmrc
+6 silly config:load:file:D:\CRM\tools\node-v20.15.1-win-x64\node_global\etc\npmrc
+7 verbose title npm i element-plus
+8 verbose argv "i" "element-plus" "--save"
+9 verbose logfile logs-max:10 dir:D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-11T11_16_52_054Z-
+10 verbose logfile D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-11T11_16_52_054Z-debug-0.log
+11 silly logfile start cleaning logs, removing 2 files
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest element-plus@*
+15 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+16 http fetch GET 200 https://registry.npmjs.org/element-plus 174ms (cache miss)
+17 silly fetch manifest vue@^3.4.29
+18 http fetch GET 200 https://registry.npmjs.org/vue 60ms (cache revalidated)
+19 silly fetch manifest typescript@*
+20 http fetch GET 200 https://registry.npmjs.org/typescript 74ms (cache revalidated)
+21 silly placeDep ROOT element-plus@2.7.6 OK for: crm-front@0.0.0 want: *
+22 silly fetch manifest @ctrl/tinycolor@^3.4.1
+23 silly fetch manifest @element-plus/icons-vue@^2.3.1
+24 silly fetch manifest @floating-ui/dom@^1.0.1
+25 silly fetch manifest @popperjs/core@npm:@sxzz/popperjs-es@^2.11.7
+26 silly fetch manifest @types/lodash@^4.14.182
+27 silly fetch manifest @types/lodash-es@^4.17.6
+28 silly fetch manifest @vueuse/core@^9.1.0
+29 silly fetch manifest async-validator@^4.2.5
+30 silly fetch manifest dayjs@^1.11.3
+31 silly fetch manifest escape-html@^1.0.3
+32 silly fetch manifest lodash@^4.17.21
+33 http fetch GET 200 https://registry.npmjs.org/@ctrl%2ftinycolor 89ms (cache miss)
+34 silly fetch manifest lodash-es@^4.17.21
+35 http fetch GET 200 https://registry.npmjs.org/escape-html 122ms (cache miss)
+36 silly fetch manifest lodash-unified@^1.0.2
+37 http fetch GET 200 https://registry.npmjs.org/@types%2flodash-es 133ms (cache miss)
+38 silly fetch manifest memoize-one@^6.0.0
+39 http fetch GET 200 https://registry.npmjs.org/lodash-es 59ms (cache miss)
+40 silly fetch manifest normalize-wheel-es@^1.2.0
+41 http fetch GET 200 https://registry.npmjs.org/@element-plus%2ficons-vue 160ms (cache miss)
+42 http fetch GET 200 https://registry.npmjs.org/async-validator 161ms (cache miss)
+43 http fetch GET 200 https://registry.npmjs.org/lodash 164ms (cache miss)
+44 http fetch GET 200 https://registry.npmjs.org/@floating-ui%2fdom 176ms (cache miss)
+45 http fetch GET 200 https://registry.npmjs.org/dayjs 179ms (cache miss)
+46 http fetch GET 200 https://registry.npmjs.org/@types%2flodash 193ms (cache miss)
+47 http fetch GET 200 https://registry.npmjs.org/memoize-one 66ms (cache miss)
+48 http fetch GET 200 https://registry.npmjs.org/normalize-wheel-es 54ms (cache miss)
+49 http fetch GET 200 https://registry.npmjs.org/@vueuse%2fcore 212ms (cache miss)
+50 http fetch GET 200 https://registry.npmjs.org/lodash-unified 640ms (cache miss)
+51 http fetch GET 200 https://registry.npmjs.org/@sxzz%2fpopperjs-es 1280ms (cache miss)
+52 silly fetch manifest vue@^3.2.0
+53 silly placeDep ROOT @ctrl/tinycolor@3.6.1 OK for: element-plus@2.7.6 want: ^3.4.1
+54 silly placeDep ROOT @element-plus/icons-vue@2.3.1 OK for: element-plus@2.7.6 want: ^2.3.1
+55 silly placeDep ROOT @floating-ui/dom@1.6.7 OK for: element-plus@2.7.6 want: ^1.0.1
+56 silly placeDep ROOT @popperjs/core@2.11.7 OK for: element-plus@2.7.6 want: npm:@sxzz/popperjs-es@^2.11.7
+57 silly placeDep ROOT @types/lodash@4.17.6 OK for: element-plus@2.7.6 want: ^4.14.182
+58 silly placeDep ROOT @types/lodash-es@4.17.12 OK for: element-plus@2.7.6 want: ^4.17.6
+59 silly placeDep ROOT @vueuse/core@9.13.0 OK for: element-plus@2.7.6 want: ^9.1.0
+60 silly placeDep ROOT async-validator@4.2.5 OK for: element-plus@2.7.6 want: ^4.2.5
+61 silly placeDep ROOT dayjs@1.11.11 OK for: element-plus@2.7.6 want: ^1.11.3
+62 silly placeDep ROOT escape-html@1.0.3 OK for: element-plus@2.7.6 want: ^1.0.3
+63 silly placeDep ROOT lodash@4.17.21 OK for: element-plus@2.7.6 want: ^4.17.21
+64 silly placeDep ROOT lodash-es@4.17.21 OK for: element-plus@2.7.6 want: ^4.17.21
+65 silly placeDep ROOT lodash-unified@1.0.3 OK for: element-plus@2.7.6 want: ^1.0.2
+66 silly placeDep ROOT memoize-one@6.0.0 OK for: element-plus@2.7.6 want: ^6.0.0
+67 silly placeDep ROOT normalize-wheel-es@1.2.0 OK for: element-plus@2.7.6 want: ^1.2.0
+68 silly fetch manifest @floating-ui/core@^1.6.0
+69 silly fetch manifest @floating-ui/utils@^0.2.4
+70 silly fetch manifest vue-demi@*
+71 silly fetch manifest @vueuse/shared@9.13.0
+72 silly fetch manifest @vueuse/metadata@9.13.0
+73 silly fetch manifest @types/web-bluetooth@^0.0.16
+74 http fetch GET 200 https://registry.npmjs.org/vue-demi 47ms (cache miss)
+75 http fetch GET 200 https://registry.npmjs.org/@types%2fweb-bluetooth 53ms (cache miss)
+76 http fetch GET 200 https://registry.npmjs.org/@floating-ui%2fcore 80ms (cache miss)
+77 http fetch GET 200 https://registry.npmjs.org/@vueuse%2fmetadata 88ms (cache miss)
+78 http fetch GET 200 https://registry.npmjs.org/@vueuse%2fshared 91ms (cache miss)
+79 http fetch GET 200 https://registry.npmjs.org/@floating-ui%2futils 99ms (cache miss)
+80 silly placeDep ROOT @floating-ui/core@1.6.4 OK for: @floating-ui/dom@1.6.7 want: ^1.6.0
+81 silly placeDep ROOT @floating-ui/utils@0.2.4 OK for: @floating-ui/dom@1.6.7 want: ^0.2.4
+82 silly fetch manifest @vue/composition-api@^1.0.0-rc.1
+83 http fetch GET 200 https://registry.npmjs.org/@vue%2fcomposition-api 83ms (cache miss)
+84 silly fetch manifest vue@>= 2.5 < 2.7
+85 silly placeDep ROOT @types/web-bluetooth@0.0.16 OK for: @vueuse/core@9.13.0 want: ^0.0.16
+86 silly placeDep ROOT @vueuse/metadata@9.13.0 OK for: @vueuse/core@9.13.0 want: 9.13.0
+87 silly placeDep ROOT @vueuse/shared@9.13.0 OK for: @vueuse/core@9.13.0 want: 9.13.0
+88 silly placeDep node_modules/@vueuse/core vue-demi@0.14.8 OK for: @vueuse/core@9.13.0 want: *
+89 silly placeDep node_modules/@vueuse/shared vue-demi@0.14.8 OK for: @vueuse/shared@9.13.0 want: *
+90 silly reify moves {}
+91 silly audit bulk request {
+91 silly audit   '@babel/parser': [ '7.24.7' ],
+91 silly audit   '@esbuild/aix-ppc64': [ '0.21.5' ],
+91 silly audit   '@esbuild/android-arm': [ '0.21.5' ],
+91 silly audit   '@esbuild/android-arm64': [ '0.21.5' ],
+91 silly audit   '@esbuild/android-x64': [ '0.21.5' ],
+91 silly audit   '@esbuild/darwin-arm64': [ '0.21.5' ],
+91 silly audit   '@esbuild/darwin-x64': [ '0.21.5' ],
+91 silly audit   '@esbuild/freebsd-arm64': [ '0.21.5' ],
+91 silly audit   '@esbuild/freebsd-x64': [ '0.21.5' ],
+91 silly audit   '@esbuild/linux-arm': [ '0.21.5' ],
+91 silly audit   '@esbuild/linux-arm64': [ '0.21.5' ],
+91 silly audit   '@esbuild/linux-ia32': [ '0.21.5' ],
+91 silly audit   '@esbuild/linux-loong64': [ '0.21.5' ],
+91 silly audit   '@esbuild/linux-mips64el': [ '0.21.5' ],
+91 silly audit   '@esbuild/linux-ppc64': [ '0.21.5' ],
+91 silly audit   '@esbuild/linux-riscv64': [ '0.21.5' ],
+91 silly audit   '@esbuild/linux-s390x': [ '0.21.5' ],
+91 silly audit   '@esbuild/linux-x64': [ '0.21.5' ],
+91 silly audit   '@esbuild/netbsd-x64': [ '0.21.5' ],
+91 silly audit   '@esbuild/openbsd-x64': [ '0.21.5' ],
+91 silly audit   '@esbuild/sunos-x64': [ '0.21.5' ],
+91 silly audit   '@esbuild/win32-arm64': [ '0.21.5' ],
+91 silly audit   '@esbuild/win32-ia32': [ '0.21.5' ],
+91 silly audit   '@esbuild/win32-x64': [ '0.21.5' ],
+91 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.0' ],
+91 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-android-arm64': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-darwin-arm64': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-darwin-x64': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-linux-powerpc64le-gnu': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.18.1' ],
+91 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.18.1' ],
+91 silly audit   '@types/estree': [ '1.0.5' ],
+91 silly audit   '@vitejs/plugin-vue': [ '5.0.5' ],
+91 silly audit   '@vue/compiler-core': [ '3.4.31' ],
+91 silly audit   '@vue/compiler-dom': [ '3.4.31' ],
+91 silly audit   '@vue/compiler-sfc': [ '3.4.31' ],
+91 silly audit   '@vue/compiler-ssr': [ '3.4.31' ],
+91 silly audit   '@vue/reactivity': [ '3.4.31' ],
+91 silly audit   '@vue/runtime-core': [ '3.4.31' ],
+91 silly audit   '@vue/runtime-dom': [ '3.4.31' ],
+91 silly audit   '@vue/server-renderer': [ '3.4.31' ],
+91 silly audit   '@vue/shared': [ '3.4.31' ],
+91 silly audit   csstype: [ '3.1.3' ],
+91 silly audit   entities: [ '4.5.0' ],
+91 silly audit   esbuild: [ '0.21.5' ],
+91 silly audit   'estree-walker': [ '2.0.2' ],
+91 silly audit   fsevents: [ '2.3.3' ],
+91 silly audit   'magic-string': [ '0.30.10' ],
+91 silly audit   nanoid: [ '3.3.7' ],
+91 silly audit   picocolors: [ '1.0.1' ],
+91 silly audit   postcss: [ '8.4.39' ],
+91 silly audit   rollup: [ '4.18.1' ],
+91 silly audit   'source-map-js': [ '1.2.0' ],
+91 silly audit   vite: [ '5.3.3' ],
+91 silly audit   vue: [ '3.4.31' ],
+91 silly audit   'element-plus': [ '2.7.6' ],
+91 silly audit   '@ctrl/tinycolor': [ '3.6.1' ],
+91 silly audit   '@element-plus/icons-vue': [ '2.3.1' ],
+91 silly audit   '@floating-ui/dom': [ '1.6.7' ],
+91 silly audit   '@sxzz/popperjs-es': [ '2.11.7' ],
+91 silly audit   '@types/lodash': [ '4.17.6' ],
+91 silly audit   '@types/lodash-es': [ '4.17.12' ],
+91 silly audit   '@vueuse/core': [ '9.13.0' ],
+91 silly audit   'async-validator': [ '4.2.5' ],
+91 silly audit   dayjs: [ '1.11.11' ],
+91 silly audit   'escape-html': [ '1.0.3' ],
+91 silly audit   lodash: [ '4.17.21' ],
+91 silly audit   'lodash-es': [ '4.17.21' ],
+91 silly audit   'lodash-unified': [ '1.0.3' ],
+91 silly audit   'memoize-one': [ '6.0.0' ],
+91 silly audit   'normalize-wheel-es': [ '1.2.0' ],
+91 silly audit   '@floating-ui/core': [ '1.6.4' ],
+91 silly audit   '@floating-ui/utils': [ '0.2.4' ],
+91 silly audit   '@types/web-bluetooth': [ '0.0.16' ],
+91 silly audit   '@vueuse/metadata': [ '9.13.0' ],
+91 silly audit   '@vueuse/shared': [ '9.13.0' ],
+91 silly audit   'vue-demi': [ '0.14.8' ]
+91 silly audit }
+92 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\fsevents
+93 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\fsevents' ]
+94 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-win32-ia32-msvc
+95 silly reify mark deleted [
+95 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-win32-ia32-msvc'
+95 silly reify ]
+96 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-win32-arm64-msvc
+97 silly reify mark deleted [
+97 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-win32-arm64-msvc'
+97 silly reify ]
+98 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-x64-musl
+99 silly reify mark deleted [
+99 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-x64-musl'
+99 silly reify ]
+100 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-x64-gnu
+101 silly reify mark deleted [
+101 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-x64-gnu'
+101 silly reify ]
+102 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-s390x-gnu
+103 silly reify mark deleted [
+103 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-s390x-gnu'
+103 silly reify ]
+104 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-riscv64-gnu
+105 silly reify mark deleted [
+105 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-riscv64-gnu'
+105 silly reify ]
+106 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-powerpc64le-gnu
+107 silly reify mark deleted [
+107 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-powerpc64le-gnu'
+107 silly reify ]
+108 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-arm64-musl
+109 silly reify mark deleted [
+109 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-arm64-musl'
+109 silly reify ]
+110 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-arm64-gnu
+111 silly reify mark deleted [
+111 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-arm64-gnu'
+111 silly reify ]
+112 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-arm-musleabihf
+113 silly reify mark deleted [
+113 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-arm-musleabihf'
+113 silly reify ]
+114 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-linux-arm-gnueabihf
+115 silly reify mark deleted [
+115 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-linux-arm-gnueabihf'
+115 silly reify ]
+116 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-darwin-x64
+117 silly reify mark deleted [
+117 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-darwin-x64'
+117 silly reify ]
+118 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-darwin-arm64
+119 silly reify mark deleted [
+119 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-darwin-arm64'
+119 silly reify ]
+120 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-android-arm64
+121 silly reify mark deleted [
+121 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-android-arm64'
+121 silly reify ]
+122 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@rollup\rollup-android-arm-eabi
+123 silly reify mark deleted [
+123 silly reify   'D:\\CRM\\code\\crm-front\\node_modules\\@rollup\\rollup-android-arm-eabi'
+123 silly reify ]
+124 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\win32-ia32
+125 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\win32-ia32' ]
+126 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\win32-arm64
+127 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\win32-arm64' ]
+128 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\sunos-x64
+129 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\sunos-x64' ]
+130 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\openbsd-x64
+131 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\openbsd-x64' ]
+132 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\netbsd-x64
+133 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\netbsd-x64' ]
+134 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-x64
+135 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-x64' ]
+136 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-s390x
+137 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-s390x' ]
+138 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-riscv64
+139 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-riscv64' ]
+140 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-ppc64
+141 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-ppc64' ]
+142 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-mips64el
+143 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-mips64el' ]
+144 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-loong64
+145 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-loong64' ]
+146 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-ia32
+147 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-ia32' ]
+148 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-arm64
+149 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-arm64' ]
+150 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\linux-arm
+151 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\linux-arm' ]
+152 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\freebsd-x64
+153 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\freebsd-x64' ]
+154 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\freebsd-arm64
+155 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\freebsd-arm64' ]
+156 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\darwin-x64
+157 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\darwin-x64' ]
+158 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\darwin-arm64
+159 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\darwin-arm64' ]
+160 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\android-x64
+161 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\android-x64' ]
+162 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\android-arm64
+163 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\android-arm64' ]
+164 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\android-arm
+165 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\android-arm' ]
+166 verbose reify failed optional dependency D:\CRM\code\crm-front\node_modules\@esbuild\aix-ppc64
+167 silly reify mark deleted [ 'D:\\CRM\\code\\crm-front\\node_modules\\@esbuild\\aix-ppc64' ]
+168 silly tarball no local data for @vueuse/shared@https://registry.npmjs.org/@vueuse/shared/-/shared-9.13.0.tgz. Extracting by manifest.
+169 silly tarball no local data for @types/web-bluetooth@https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.16.tgz. Extracting by manifest.
+170 silly tarball no local data for @floating-ui/utils@https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.4.tgz. Extracting by manifest.
+171 silly tarball no local data for @floating-ui/core@https://registry.npmjs.org/@floating-ui/core/-/core-1.6.4.tgz. Extracting by manifest.
+172 silly tarball no local data for @vueuse/metadata@https://registry.npmjs.org/@vueuse/metadata/-/metadata-9.13.0.tgz. Extracting by manifest.
+173 silly tarball no local data for normalize-wheel-es@https://registry.npmjs.org/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz. Extracting by manifest.
+174 silly tarball no local data for memoize-one@https://registry.npmjs.org/memoize-one/-/memoize-one-6.0.0.tgz. Extracting by manifest.
+175 silly tarball no local data for lodash-unified@https://registry.npmjs.org/lodash-unified/-/lodash-unified-1.0.3.tgz. Extracting by manifest.
+176 silly tarball no local data for lodash-es@https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz. Extracting by manifest.
+177 silly tarball no local data for lodash@https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz. Extracting by manifest.
+178 silly tarball no local data for dayjs@https://registry.npmjs.org/dayjs/-/dayjs-1.11.11.tgz. Extracting by manifest.
+179 silly tarball no local data for escape-html@https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz. Extracting by manifest.
+180 silly tarball no local data for async-validator@https://registry.npmjs.org/async-validator/-/async-validator-4.2.5.tgz. Extracting by manifest.
+181 silly tarball no local data for @vueuse/core@https://registry.npmjs.org/@vueuse/core/-/core-9.13.0.tgz. Extracting by manifest.
+182 silly tarball no local data for @types/lodash-es@https://registry.npmjs.org/@types/lodash-es/-/lodash-es-4.17.12.tgz. Extracting by manifest.
+183 silly tarball no local data for @types/lodash@https://registry.npmjs.org/@types/lodash/-/lodash-4.17.6.tgz. Extracting by manifest.
+184 silly tarball no local data for @popperjs/core@https://registry.npmjs.org/@sxzz/popperjs-es/-/popperjs-es-2.11.7.tgz. Extracting by manifest.
+185 silly tarball no local data for @floating-ui/dom@https://registry.npmjs.org/@floating-ui/dom/-/dom-1.6.7.tgz. Extracting by manifest.
+186 silly tarball no local data for @element-plus/icons-vue@https://registry.npmjs.org/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz. Extracting by manifest.
+187 silly tarball no local data for @ctrl/tinycolor@https://registry.npmjs.org/@ctrl/tinycolor/-/tinycolor-3.6.1.tgz. Extracting by manifest.
+188 silly tarball no local data for element-plus@https://registry.npmjs.org/element-plus/-/element-plus-2.7.6.tgz. Extracting by manifest.
+189 silly tarball no local data for vue-demi@https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.8.tgz. Extracting by manifest.
+190 silly tarball no local data for vue-demi@https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.8.tgz. Extracting by manifest.
+191 http fetch GET 200 https://registry.npmjs.org/memoize-one/-/memoize-one-6.0.0.tgz 159ms (cache miss)
+192 http fetch GET 200 https://registry.npmjs.org/lodash-unified/-/lodash-unified-1.0.3.tgz 169ms (cache miss)
+193 http fetch GET 200 https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.16.tgz 181ms (cache miss)
+194 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 200ms
+195 silly audit report {}
+196 http fetch GET 200 https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz 237ms (cache miss)
+197 http fetch GET 200 https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.8.tgz 229ms (cache miss)
+198 http fetch GET 200 https://registry.npmjs.org/@vueuse/metadata/-/metadata-9.13.0.tgz 390ms (cache miss)
+199 http fetch GET 200 https://registry.npmjs.org/normalize-wheel-es/-/normalize-wheel-es-1.2.0.tgz 397ms (cache miss)
+200 http fetch GET 200 https://registry.npmjs.org/@vueuse/shared/-/shared-9.13.0.tgz 549ms (cache miss)
+201 http fetch GET 200 https://registry.npmjs.org/@floating-ui/dom/-/dom-1.6.7.tgz 581ms (cache miss)
+202 http fetch GET 200 https://registry.npmjs.org/@floating-ui/core/-/core-1.6.4.tgz 601ms (cache miss)
+203 http fetch GET 200 https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.4.tgz 644ms (cache miss)
+204 http fetch GET 200 https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.8.tgz 631ms (cache miss)
+205 http fetch GET 200 https://registry.npmjs.org/@ctrl/tinycolor/-/tinycolor-3.6.1.tgz 1043ms (cache miss)
+206 http fetch GET 200 https://registry.npmjs.org/async-validator/-/async-validator-4.2.5.tgz 1062ms (cache miss)
+207 http fetch GET 200 https://registry.npmjs.org/@sxzz/popperjs-es/-/popperjs-es-2.11.7.tgz 1118ms (cache miss)
+208 http fetch GET 200 https://registry.npmjs.org/@vueuse/core/-/core-9.13.0.tgz 1466ms (cache miss)
+209 http fetch GET 200 https://registry.npmjs.org/@types/lodash-es/-/lodash-es-4.17.12.tgz 1834ms (cache miss)
+210 http fetch GET 200 https://registry.npmjs.org/dayjs/-/dayjs-1.11.11.tgz 2647ms (cache miss)
+211 http fetch GET 200 https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz 2841ms (cache miss)
+212 http fetch GET 200 https://registry.npmjs.org/@types/lodash/-/lodash-4.17.6.tgz 2851ms (cache miss)
+213 http fetch GET 200 https://registry.npmjs.org/@element-plus/icons-vue/-/icons-vue-2.3.1.tgz 3122ms (cache miss)
+214 http fetch GET 200 https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz 3182ms (cache miss)
+215 http fetch GET 200 https://registry.npmjs.org/element-plus/-/element-plus-2.7.6.tgz 23109ms (cache miss)
+216 info run vue-demi@0.14.8 postinstall node_modules/@vueuse/core/node_modules/vue-demi node -e "try{require('./scripts/postinstall.js')}catch(e){}"
+217 info run vue-demi@0.14.8 postinstall node_modules/@vueuse/shared/node_modules/vue-demi node -e "try{require('./scripts/postinstall.js')}catch(e){}"
+218 info run vue-demi@0.14.8 postinstall { code: 0, signal: null }
+219 info run vue-demi@0.14.8 postinstall { code: 0, signal: null }
+220 silly ADD node_modules/@vueuse/shared
+221 silly ADD node_modules/@vueuse/shared/node_modules/vue-demi
+222 silly ADD node_modules/@vueuse/metadata
+223 silly ADD node_modules/@types/web-bluetooth
+224 silly ADD node_modules/@floating-ui/utils
+225 silly ADD node_modules/@floating-ui/core
+226 silly ADD node_modules/normalize-wheel-es
+227 silly ADD node_modules/memoize-one
+228 silly ADD node_modules/lodash-unified
+229 silly ADD node_modules/lodash-es
+230 silly ADD node_modules/lodash
+231 silly ADD node_modules/escape-html
+232 silly ADD node_modules/dayjs
+233 silly ADD node_modules/async-validator
+234 silly ADD node_modules/@vueuse/core
+235 silly ADD node_modules/@vueuse/core/node_modules/vue-demi
+236 silly ADD node_modules/@types/lodash-es
+237 silly ADD node_modules/@types/lodash
+238 silly ADD node_modules/@popperjs/core
+239 silly ADD node_modules/@floating-ui/dom
+240 silly ADD node_modules/@element-plus/icons-vue
+241 silly ADD node_modules/@ctrl/tinycolor
+242 silly ADD node_modules/element-plus
+243 silly ADD
+244 silly ADD
+245 silly ADD
+246 silly ADD
+247 silly ADD
+248 silly ADD
+249 silly ADD
+250 silly ADD
+251 silly ADD
+252 silly ADD
+253 silly ADD
+254 silly ADD
+255 silly ADD
+256 silly ADD
+257 silly ADD
+258 silly ADD
+259 silly ADD
+260 silly ADD
+261 silly ADD
+262 silly ADD
+263 silly ADD
+264 silly ADD
+265 silly ADD
+266 silly ADD
+267 silly ADD
+268 silly ADD
+269 silly ADD
+270 silly ADD
+271 silly ADD
+272 silly ADD
+273 silly ADD
+274 silly ADD
+275 silly ADD
+276 silly ADD
+277 silly ADD
+278 silly ADD
+279 silly ADD
+280 silly ADD
+281 verbose exit 0
+282 info ok
