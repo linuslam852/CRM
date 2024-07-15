@@ -15,4 +15,8 @@ public class UserController {
         return R.OK(tUser);
     }
 
+    @GetMapping("/api/login/free")
+    public R freeLogin(){
+        return R.OK();
+    }
 }

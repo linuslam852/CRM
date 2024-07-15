@@ -2,6 +2,9 @@ package com.linus.config;
 
 import com.linus.config.handler.MyAuthenticationFailureHandler;
 import com.linus.config.handler.MyAuthenticationSuccessHandler;
+import com.linus.config.handler.MyLogoutSuccessHandler;
+import com.linus.constant.Constants;
+import com.linus.filter.TokenVerifyFilter;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -19,11 +23,17 @@ import java.util.Arrays;
 public class SecurityConfig {
 
     @Resource
+    private TokenVerifyFilter tokenVerifyFilter;
+
+    @Resource
     private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
 
 
     @Resource
     private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
+
+    @Resource
+    private MyLogoutSuccessHandler myLogoutSuccessHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -34,7 +44,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity,CorsConfigurationSource corsConfigurationSource) throws Exception {
         return httpSecurity
                 .formLogin((formLogin) -> {
-                    formLogin.loginProcessingUrl("/api/login") //登入處理地址，不需要寫controller
+                    formLogin.loginProcessingUrl(Constants.LOGIN_URI) //登入處理地址，不需要寫controller
                             .usernameParameter("loginAct")
                             .passwordParameter("loginPwd")
                             .successHandler(myAuthenticationSuccessHandler)
@@ -49,6 +59,11 @@ public class SecurityConfig {
                 })
                 .cors((cors)->{
                     cors.configurationSource(corsConfigurationSource); //支持跨域請求
+                })
+                .addFilterBefore(tokenVerifyFilter, LogoutFilter.class)
+                .logout((logout)->{
+                    logout.logoutUrl("/api/logout")
+                            .logoutSuccessHandler(myLogoutSuccessHandler);
                 })
                 .build();
     }

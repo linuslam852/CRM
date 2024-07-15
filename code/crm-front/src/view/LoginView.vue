@@ -1,6 +1,6 @@
 <script>
 import {doGet, doPost} from "../http/httpRequest";
-import {messageTip} from "../utils/util.js";
+import {getTokenName, messageTip, removeToken} from "../utils/util.js";
 
 
 export default {
@@ -21,6 +21,11 @@ export default {
       }
     }
   },
+
+  mounted(){
+    this.freeLogin();
+  },
+
   methods:{
     login(){
       //提交前驗證輸入框的合法性
@@ -37,11 +42,14 @@ export default {
             if(resp.data.code === 200){
               //登入成功
               messageTip("登入成功","success");
+              //刪除歷史的登入jwt
+              removeToken();
+
               //存儲jwt
               if(this.user.rememberMe === true){
-                window.localStorage.setItem("crm_token",resp.data.data);
+                window.localStorage.setItem(getTokenName(),resp.data.data);
               } else {
-                window.sessionStorage.setItem("crm_token",resp.data.data);
+                window.sessionStorage.setItem(getTokenName(),resp.data.data);
               }
 
               //跳轉到系統主頁面
@@ -53,6 +61,17 @@ export default {
           });
         }
       })
+    },
+
+    freeLogin(){
+      let token = window.localStorage.getItem(getTokenName());
+      if(token){
+        doGet("/api/login/free",{}).then(resp=>{
+          if(resp.data.code === 200){
+            window.localStorage.href = "/dashboard";
+          }
+        })
+      }
     }
   }
 }

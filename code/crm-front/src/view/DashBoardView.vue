@@ -1,19 +1,34 @@
 <script>
 import {doGet} from "../http/httpRequest.js";
+import {
+  ArrowDown,
+  Box,
+  Fold,
+  Money,
+  Notebook,
+  OfficeBuilding,
+  Operation,
+  Stamp,
+  Tools,
+  User
+} from "@element-plus/icons-vue";
+import {messageConfirm, messageTip, removeToken} from "../utils/util.js";
 
 export default {
   name: "dashBoardView",
+  components: {ArrowDown, Fold, Tools, Stamp, Notebook, Box, Money, User, Operation, OfficeBuilding},
 
   data(){
     return{
       //Menu是否折疊
-      isCollapse: false
+      isCollapse: false,
+      user : {},
     }
   },
 
   mounted() {
     //加載當前登入用戶
-    this.loadLoginUser();
+    this.loadLoginUser()
   },
 
   methods:{
@@ -25,7 +40,24 @@ export default {
     //加載當前登入用戶
     loadLoginUser(){
       doGet("/api/login/info",{}).then((resp)=>{
-        console.log(resp);
+        this.user = resp.data.data;
+      })
+    },
+    logout(){
+      doGet("/api/logout",{}).then(resp=>{
+        if(resp.data.code === 200){
+          removeToken();
+          messageTip("退出成功","success");
+          window.location.href="/";
+        } else {
+          messageConfirm("退出異常，是否強制退出").then(() => {
+            //後端token驗證未通過，前端token肯定有問題，沒必要儲存在瀏覽器內
+            removeToken();
+            window.location.href="/";
+          }).catch(() => {
+            messageTip("取消強制退出","warning");
+          })
+        }
       })
     }
   }
@@ -41,10 +73,11 @@ export default {
         background-color="#334157"
         default-active="2"
         text-color="#fff"
-        style="border-right: solid 0px"
+        style="border-right: solid 0"
         :unique-opened="true"
         :collapse="isCollapse"
         :collapse-transition="false"
+        :router="true"
     >
       <el-sub-menu index="1">
         <template #title>
@@ -75,7 +108,7 @@ export default {
 
       <el-sub-menu index="4">
         <template #title>
-          <el-icon><Money /></el-icon>
+          <el-icon><Money/></el-icon>
           <span>交易管理</span>
         </template>
         <el-menu-item index="4-1">交易管理</el-menu-item>
@@ -129,14 +162,14 @@ export default {
 
         <el-dropdown :hide-on-click="false">
           <span class="el-dropdown-link">
-            Dropdown List
+            {{user.name}}
             <el-icon class="el-icon--right"><arrow-down /></el-icon>
           </span>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item>我的資料</el-dropdown-item>
               <el-dropdown-item>修改密碼</el-dropdown-item>
-              <el-dropdown-item divided>退出登入</el-dropdown-item>
+              <el-dropdown-item divided @click="logout()">退出登入</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>

@@ -32,47 +32,48 @@ public class JWTUtils {
                 .sign(Algorithm.HMAC256(SECRET));
     }
 
-//    /**
-//     * 验证jwt
-//     *
-//     */
-//    public static Boolean verifyJWT(String jwt) {
-//        try {
-//            // 使用密钥创建一个jwt验证器
-//            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(SECRET)).build();
-//
-//            //jwt验证器验证jwt
-//            jwtVerifier.verify(jwt); //如果此行代码没有抛出异常，就说明jwt验证通过，抛出异常，就说明jwt验证不通过
-//
-//            return true;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return false;
-//    }
-//
-//    /**
-//     * 解析jwt
-//     *
-//     */
-//    public static String parseJWT(String jwt) {
-//        Map<String, Object> map = new HashMap<>();
-//        try {
-//            // 使用密钥创建一个jwt验证器对象
-//            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(SECRET)).build();
-//
-//            //jwt验证器对象验证jwt，得到一个解码后的jwt对象
-//            DecodedJWT decodedJWT = jwtVerifier.verify(jwt);
-//
-//            //验证通过了，就开始解析负载里面的数据
-//            Claim userJSON = decodedJWT.getClaim("user");
-//
-//            return userJSON.asString();
-//        } catch (TokenExpiredException e) {
-//            e.printStackTrace();
-//            throw new RuntimeException(e);
-//        }
-//    }
+    /**
+     * 驗證jwt
+     *
+     */
+    public static Boolean verifyJWT(String jwt) {
+        try {
+            // 使用密鑰創建一個jwt驗證器
+            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(SECRET)).build();
+
+            //jwt驗證器驗證jwt
+            jwtVerifier.verify(jwt);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    /**
+     * 解析jwt
+     *
+     */
+    public static String parseJWT(String jwt) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            // 使用密鑰創建一個jwt驗證器對象
+            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(SECRET)).build();
+
+            //jwt驗證器對象驗證jwt，得到一個解碼後的的jwt對象
+            DecodedJWT decodedJWT = jwtVerifier.verify(jwt);
+
+            //驗證通過了，就開始解析負載裡面的數據
+            Claim userJSON = decodedJWT.getClaim("user");
+
+            return userJSON.asString();
+        } catch (TokenExpiredException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 //
 //    /**
 //     * 解析jwt得到userId
