@@ -2,6 +2,8 @@ package com.linus.mapper;
 
 import com.linus.model.TUser;
 
+import java.util.List;
+
 public interface TUserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,4 +18,8 @@ public interface TUserMapper {
     int updateByPrimaryKey(TUser record);
 
     TUser selectByLoginAct(String username);
+
+    List<TUser> selectUserByPage();
+
+    TUser selectDetailById(Integer id);
 }

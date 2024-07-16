@@ -9,4 +9,7 @@ public class Constants {
     public static final Long EXPIRE_TIME = 7 * 24 * 60 * 60L;
 
     public static final Long DEFAULT_EXPIRE_TIME = 30 * 60L;
+
+    //分頁時每頁顯示10條
+    public static final int PAGE_SIZE = 10;
 }

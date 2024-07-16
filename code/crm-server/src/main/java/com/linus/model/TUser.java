@@ -100,6 +100,9 @@ public class TUser implements UserDetails, Serializable {
     //權限標識符List
     private List<String> permissionList;
 
+    private TUser createByDo;
+    private TUser editByDo;
+
     private static final long serialVersionUID = 1L;
 
     @JsonIgnore

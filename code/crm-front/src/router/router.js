@@ -10,7 +10,18 @@ let router = createRouter({
         {
             path: '/dashboard',
             component: () => import('../view/DashBoardView.vue'),
-        }
+            children:[
+                {
+                    path: 'user',
+                    component: () => import('../view/UserView.vue'),
+                },
+                {
+                    //id是動態變量
+                    path: 'user/:id',
+                    component: () => import('../view/UserDetailView.vue'),
+                },
+            ]
+        },
     ]
 })
 

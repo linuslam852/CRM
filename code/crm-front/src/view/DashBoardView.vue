@@ -47,8 +47,8 @@ export default {
       doGet("/api/logout",{}).then(resp=>{
         if(resp.data.code === 200){
           removeToken();
-          messageTip("退出成功","success");
           window.location.href="/";
+          messageTip("退出成功","success");
         } else {
           messageConfirm("退出異常，是否強制退出").then(() => {
             //後端token驗證未通過，前端token肯定有問題，沒必要儲存在瀏覽器內
@@ -138,8 +138,7 @@ export default {
           <el-icon><Stamp /></el-icon>
           <span>用戶管理</span>
         </template>
-        <el-menu-item index="7-1">產品管理</el-menu-item>
-        <el-menu-item index="7-2">產品管理</el-menu-item>
+        <el-menu-item index="/dashboard/user">用戶管理</el-menu-item>
       </el-sub-menu>
 
       <el-sub-menu index="8">
@@ -176,7 +175,9 @@ export default {
 
       </el-header>
 
-      <el-main class="content">Main</el-main>
+      <el-main class="content">
+        <router-view/>
+      </el-main>
 
       <el-footer>@Copyright 2024 萊納斯學習用途</el-footer>
     </el-container>

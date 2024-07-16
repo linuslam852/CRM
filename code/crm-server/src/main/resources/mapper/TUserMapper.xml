@@ -18,6 +18,34 @@
     <result column="edit_by" jdbcType="INTEGER" property="editBy" />
     <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
   </resultMap>
+
+  <resultMap id="UserResultMap" type="com.linus.model.TUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="login_act" jdbcType="VARCHAR" property="loginAct" />
+    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="account_no_expired" jdbcType="INTEGER" property="accountNoExpired" />
+    <result column="credentials_no_expired" jdbcType="INTEGER" property="credentialsNoExpired" />
+    <result column="account_no_locked" jdbcType="INTEGER" property="accountNoLocked" />
+    <result column="account_enabled" jdbcType="INTEGER" property="accountEnabled" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="INTEGER" property="createBy" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="edit_by" jdbcType="INTEGER" property="editBy" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <association property="createByDo" javaType="com.linus.model.TUser">
+      <id column="createById" jdbcType="INTEGER" property="id" />
+      <result column="createByName" jdbcType="VARCHAR" property="name" />
+    </association>
+
+    <association property="editByDo" javaType="com.linus.model.TUser">
+      <id column="editById" jdbcType="INTEGER" property="id" />
+      <result column="editByName" jdbcType="VARCHAR" property="name" />
+    </association>
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, login_act, login_pwd, `name`, phone, email, account_no_expired, credentials_no_expired, 
     account_no_locked, account_enabled, create_time, create_by, edit_time, edit_by, last_login_time
@@ -36,7 +64,30 @@
     from t_user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+
+    <select id="selectUserByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+  </select>
+
+    <select id="selectDetailById" parameterType="java.lang.Integer" resultMap="UserResultMap">
+      SELECT
+        tu.*,
+        tu2.id createById,
+        tu2.NAME createByName,
+        tu3.id editById,
+        tu3.NAME editByName
+      FROM
+        t_user tu
+          LEFT JOIN t_user tu2 ON tu.create_by = tu2.id
+          LEFT JOIN t_user tu3 ON tu.edit_by = tu3.id
+      WHERE
+        tu.id =  #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
