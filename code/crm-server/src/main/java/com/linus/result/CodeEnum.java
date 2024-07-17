@@ -14,7 +14,10 @@ public enum CodeEnum {
     TOKEN_IS_EXPIRED(902,"請求Token已過期"),
     TOKEN_IS_ERROR(903,"請求Token錯誤"),
     TOKEN_IS_NOT_MATCH(904,"請求Token不匹配"),
-    LOGOUT_SUCCESS("退出成功");
+    LOGOUT_SUCCESS(200,"退出成功"),
+    Data_Access_EXCEPTION(500,"數據庫操作失敗"),
+
+    ;
 
     private int code;
 

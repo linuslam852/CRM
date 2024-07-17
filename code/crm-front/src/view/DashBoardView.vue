@@ -23,6 +23,19 @@ export default {
       //Menu是否折疊
       isCollapse: false,
       user : {},
+      //控制主體內容是否顯示
+      isRouterAlive: true,
+    }
+  },
+
+  provide(){
+    return {
+      reload: ()=>{
+        this.isRouterAlive = false;
+        this.$nextTick(function(){
+          this.isRouterAlive = true;
+        })
+      }
     }
   },
 
@@ -138,7 +151,7 @@ export default {
           <el-icon><Stamp /></el-icon>
           <span>用戶管理</span>
         </template>
-        <el-menu-item index="/dashboard/user">用戶管理</el-menu-item>
+        <el-menu-item index="/dashboard/user"><el-icon><User /></el-icon>用戶管理</el-menu-item>
       </el-sub-menu>
 
       <el-sub-menu index="8">
@@ -176,7 +189,7 @@ export default {
       </el-header>
 
       <el-main class="content">
-        <router-view/>
+        <router-view v-if="isRouterAlive"/>
       </el-main>
 
       <el-footer>@Copyright 2024 萊納斯學習用途</el-footer>

@@ -21,7 +21,7 @@ export function removeToken(){
 export function messageConfirm(msg){
     return ElMessageBox.confirm(
         msg,
-        'Warning',
+        '系統提醒',
         {
             confirmButtonText: '確定',
             cancelButtonText:'取消',

@@ -22,32 +22,20 @@ export function doPost(url, data){
 }
 
 export function doPut(url, data){
-    axios({
+    return axios({
         method: "put",
         url: url,
         data: data,
         dataType: "json"
-    }).then(function(rep){
-        var s = "";
-        rep.data.forEach(function (stu){
-            s += stu.name + "-----------" + stu.age +"<br>";
-        });
-        document.getElementById("mydiv").innerHTML = s;
     })
 }
 
 export function doDelete(url, params){
-    axios({
+    return axios({
         method: "delete",
         url: url,
         params: params,
         dataType: "json"
-    }).then(function(rep){
-        var s = "";
-        rep.data.forEach(function (stu){
-            s += stu.name + "-----------" + stu.age +"<br>";
-        });
-        document.getElementById("mydiv").innerHTML = s;
     })
 }
 

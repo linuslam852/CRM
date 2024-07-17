@@ -69,7 +69,10 @@
     <select id="selectUserByPage" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from t_user
+    from t_user tu
+      <where>
+        ${filterSQL}
+      </where>
   </select>
 
     <select id="selectDetailById" parameterType="java.lang.Integer" resultMap="UserResultMap">
@@ -91,7 +94,17 @@
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.linus.model.TUser" useGeneratedKeys="true">
+
+    <delete id="deleteByIds" parameterType="java.util.List">
+      delete from t_user
+      where id in
+      <foreach collection="idList" item="id" open="(" close=")" separator=",">
+        #{id,jdbcType=INTEGER}
+      </foreach>
+    </delete>
+
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.linus.model.TUser" useGeneratedKeys="true">
     insert into t_user (login_act, login_pwd, `name`, 
       phone, email, account_no_expired, 
       credentials_no_expired, account_no_locked, 
@@ -199,10 +212,10 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.linus.model.TUser">
     update t_user
     <set>
-      <if test="loginAct != null">
+      <if test="loginAct != null ">
         login_act = #{loginAct,jdbcType=VARCHAR},
       </if>
-      <if test="loginPwd != null">
+      <if test="loginPwd != null and loginPwd != ''">
         login_pwd = #{loginPwd,jdbcType=VARCHAR},
       </if>
       <if test="name != null">

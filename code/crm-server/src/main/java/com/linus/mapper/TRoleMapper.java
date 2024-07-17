@@ -2,6 +2,8 @@ package com.linus.mapper;
 
 import com.linus.model.TRole;
 
+import java.util.List;
+
 public interface TRoleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface TRoleMapper {
     int updateByPrimaryKeySelective(TRole record);
 
     int updateByPrimaryKey(TRole record);
+
+    List<TRole> selectByUserId(Integer userId);
 }

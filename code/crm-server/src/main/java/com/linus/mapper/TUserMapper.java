@@ -1,6 +1,8 @@
 package com.linus.mapper;
 
+import com.linus.commons.DataScope;
 import com.linus.model.TUser;
+import com.linus.query.BaseQuery;
 
 import java.util.List;
 
@@ -19,7 +21,10 @@ public interface TUserMapper {
 
     TUser selectByLoginAct(String username);
 
-    List<TUser> selectUserByPage();
+    @DataScope(tableAlias = "tu", tableField = "id")
+    List<TUser> selectUserByPage(BaseQuery query);
 
     TUser selectDetailById(Integer id);
+
+    int deleteByIds(List<String> idList);
 }
