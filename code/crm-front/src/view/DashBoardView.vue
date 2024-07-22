@@ -97,7 +97,7 @@ export default {
           <el-icon><OfficeBuilding /></el-icon>
           <span>市場活動</span>
         </template>
-          <el-menu-item index="1-1">市場活動</el-menu-item>
+          <el-menu-item index="/dashboard/activity">市場活動</el-menu-item>
           <el-menu-item index="1-2">市場統計</el-menu-item>
       </el-sub-menu>
 
