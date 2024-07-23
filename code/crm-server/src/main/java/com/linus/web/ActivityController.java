@@ -2,6 +2,7 @@ package com.linus.web;
 
 import com.github.pagehelper.PageInfo;
 import com.linus.model.TActivity;
+import com.linus.query.ActivityQuery;
 import com.linus.result.R;
 import com.linus.service.ActivityService;
 import jakarta.annotation.Resource;
@@ -16,11 +17,11 @@ public class ActivityController {
     private ActivityService activityService;
 
     @GetMapping("/api/activitys")
-    public R activityPage(@RequestParam(value = "current", required = false) Integer current){
+    public R activityPage(@RequestParam(value = "current", required = false) Integer current, ActivityQuery activityQuery){
         if(current == null){
             current = 1;
         }
-        PageInfo<TActivity> pageInfo = activityService.getActivityByPage(current);
+        PageInfo<TActivity> pageInfo = activityService.getActivityByPage(current, activityQuery);
 
         return R.OK(pageInfo);
     }

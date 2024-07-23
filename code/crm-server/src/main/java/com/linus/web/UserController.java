@@ -76,4 +76,10 @@ public class UserController {
         return batchDel >= idList.size() ? R.OK() : R.FAIL();
     }
 
+    @GetMapping("/api/owner")
+    public R owner(){
+        List<TUser> ownerList = userService.getOwnerList();
+        return R.OK(ownerList);
+    }
+
 }

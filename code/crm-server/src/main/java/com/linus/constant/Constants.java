@@ -5,6 +5,7 @@ public class Constants {
 
     //redis的key的命名規範，項目名：模塊名：功能名：唯一業務參數(比如用戶id)
     public static final String REDIS_JWT_KEY = "crm:user:login:";
+    public static final String REDIS_OWNER_KEY = "crm:user:owner";
 
     public static final Long EXPIRE_TIME = 7 * 24 * 60 * 60L;
 

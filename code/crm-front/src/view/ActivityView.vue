@@ -12,6 +12,13 @@ export default {
       }],
       pageSize:0,
       total:0,
+
+      ownerOptions:[{}],
+      activityRules:{
+        cost:[
+          {pattern: /^[0-9]+(\.[0-9]{2})?$/, message:'必須是數字且只能有兩位小數',trigger:'blur'},
+        ],
+      }
     }
   },
 
@@ -21,8 +28,26 @@ export default {
 
   methods:{
     getData(current){
+      let startTime = '';
+      let endTime = '';
+      for(let key in this.activityQuery.activityTime){
+        if(key === '0'){
+          startTime = this.activityQuery.activityTime[key];
+        }
+        if(key === '1'){
+          endTime = this.activityQuery.activityTime[key];
+        }
+      }
+
+
       doGet("/api/activitys",{
-        current: current //當前是第幾頁
+        current: current,  //當前是第幾頁
+        ownerId: this.activityQuery.ownerId,
+        name: this.activityQuery.name,
+        startTime:startTime,
+        endTime:endTime,
+        cost: this.activityQuery.cost,
+        createTime: this.activityQuery.createTime
       }).then(resp=> {
         if(resp.data.code === 200){
           console.log(resp)
@@ -36,41 +61,55 @@ export default {
     toPage(current){
       this.getData(current);
     },
+
+    loadOwner(){
+      doGet("/api/owner",{}).then(resp=>{
+        if(resp.data.code === 200){
+          this.ownerOptions = resp.data.data;
+        }
+      })
+    },
+
+    onSearch(){
+      this.getData(1);
+    },
   }
 }
 </script>
 
 <template>
-  <el-form :inline="true" :model="activityQuery">
+  <el-form :inline="true" :model="activityQuery" :rules="activityRules">
 
     <el-form-item label="負責人">
       <el-select
           v-model="activityQuery.ownerId"
           placeholder="請選擇負責人"
+          @click="loadOwner"
           clearable>
-        <el-option label="w" value="shanghai" />
-        <el-option label="z" value="beijing" />
+        <el-option
+            v-for="item in ownerOptions"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"/>
       </el-select>
     </el-form-item>
 
     <el-form-item label="活動名稱">
-      <el-input v-model="activityQuery.user" placeholder="請輸入活動名稱" clearable />
+      <el-input v-model="activityQuery.name" placeholder="請輸入活動名稱" clearable />
     </el-form-item>
 
 
     <el-form-item label="活動時間">
       <el-date-picker
-          v-model="activityQuery.startTime"
+          v-model="activityQuery.activityTime"
           type="datetimerange"
           start-placeholder="開始時間"
           end-placeholder="結束時間"
-          format="YYYY-MM-DD HH:mm:ss"
-          date-format="YYYY/MM/DD ddd"
-          time-format="A hh:mm:ss"
+          value-format="YYYY-MM-DD HH:mm:ss"
       />
     </el-form-item>
 
-    <el-form-item label="活動預算">
+    <el-form-item label="活動預算" prop="cost">
       <el-input v-model="activityQuery.cost" placeholder="請輸入活動預算" clearable />
     </el-form-item>
 
@@ -79,6 +118,7 @@ export default {
           v-model="activityQuery.createTime"
           type="datetime"
           placeholder="請選擇創建時間"
+          value-format="YYYY-MM-DD HH:mm:ss"
       />
     </el-form-item>
 

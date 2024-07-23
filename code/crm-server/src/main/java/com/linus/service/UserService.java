@@ -19,4 +19,6 @@ public interface UserService extends UserDetailsService {
     int delUserById(Integer id);
 
     int batchDelUserByIds(List<String> idList);
+
+    List<TUser> getOwnerList();
 }

@@ -3,6 +3,7 @@ package com.linus.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.linus.constant.Constants;
+import com.linus.manager.RedisManager;
 import com.linus.mapper.TRoleMapper;
 import com.linus.mapper.TUserMapper;
 import com.linus.model.TRole;
@@ -10,6 +11,7 @@ import com.linus.model.TUser;
 import com.linus.query.BaseQuery;
 import com.linus.query.UserQuery;
 import com.linus.service.UserService;
+import com.linus.utils.CacheUtils;
 import com.linus.utils.JSONUtil;
 import com.linus.utils.JWTUtils;
 import jakarta.annotation.Resource;
@@ -36,6 +38,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private TRoleMapper tRoleMapper;
+
+    @Resource
+    private RedisManager redisManager;
 
 
     @Override
@@ -110,5 +115,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public int batchDelUserByIds(List<String> idList) {
         return tUserMapper.deleteByIds(idList);
+    }
+
+    @Override
+    public List<TUser> getOwnerList() {
+        //先從redis查詢
+        //redis查詢不到，就從數據庫查詢，並且把數據放入redis(5分鐘過期)
+        return CacheUtils.getCacheData(()->{
+            //從redis查詢
+            return (List<TUser>) redisManager.getValue(Constants.REDIS_OWNER_KEY);
+
+        },
+        ()->{
+            return (List<TUser>) tUserMapper.selectByOwner();
+        },
+        (t)->{
+            redisManager.setValue(Constants.REDIS_OWNER_KEY,t);
+        });
+
     }
 }

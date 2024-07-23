@@ -2,6 +2,7 @@ package com.linus.mapper;
 
 import com.linus.commons.DataScope;
 import com.linus.model.TActivity;
+import com.linus.query.ActivityQuery;
 import com.linus.query.BaseQuery;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public interface TActivityMapper {
     int updateByPrimaryKey(TActivity record);
 
     @DataScope(tableAlias = "ta", tableField = "owner_id")
-    List<TActivity> getActivityByPage(BaseQuery baseQuery);
+    List<TActivity> getActivityByPage(ActivityQuery activityQuery);
 }
