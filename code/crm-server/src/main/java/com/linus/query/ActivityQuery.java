@@ -9,6 +9,8 @@ import java.util.Date;
 @Data
 public class ActivityQuery extends BaseQuery{
 
+    private Integer id;
+
     private Integer ownerId;
 
     private String name;
@@ -23,5 +25,7 @@ public class ActivityQuery extends BaseQuery{
 
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+
+    private String description;
 
 }

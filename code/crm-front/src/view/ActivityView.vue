@@ -73,6 +73,22 @@ export default {
     onSearch(){
       this.getData(1);
     },
+
+    add(){
+      this.$router.push("activity/add");
+    },
+
+    onReset(){
+      this.activityQuery={};
+    },
+
+    edit(id){
+      this.$router.push("/dashboard/activity/edit/"+id);
+    },
+
+    view(id){
+      this.$router.push("/dashboard/activity/"+id);
+    },
   }
 }
 </script>

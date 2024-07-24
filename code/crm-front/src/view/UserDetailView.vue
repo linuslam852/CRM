@@ -1,5 +1,6 @@
 <script>
 import {doGet} from "../http/httpRequest.js";
+import {goBack} from "../utils/util.js";
 
 export default {
   name: "UserDetailView.vue",
@@ -18,6 +19,7 @@ export default {
   },
 
   methods:{
+    goBack,
     loadUserDetail(){
       let id = this.$route.params.id; //必須和路由配置的path "user/id"一樣
       doGet("/api/user/"+id, {}).then(resp=>{
@@ -33,10 +35,6 @@ export default {
       })
     },
 
-    //返回上一頁
-    goBack(){
-      this.$router.go(-1);
-    }
   }
 }
 </script>
@@ -100,7 +98,7 @@ export default {
     </el-form-item>
 
     <el-form-item>
-      <el-button type="success" @click="goBack">返 回</el-button>
+      <el-button type="success" @click="goBack()">返 回</el-button>
     </el-form-item>
 
   </el-form>

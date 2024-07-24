@@ -25,6 +25,18 @@ let router = createRouter({
                     path: 'activity',
                     component: () => import('../view/ActivityView.vue'),
                 },
+                {
+                    path:'activity/add',
+                    component: () => import('../view/ActivityRecordView.vue'),
+                },
+                {
+                    path:'activity/edit/:id',
+                    component: () => import('../view/ActivityRecordView.vue'),
+                },
+                {
+                    path:'activity/:id',
+                    component: () => import('../view/ActivityDetailView.vue'),
+                },
             ]
         },
     ]

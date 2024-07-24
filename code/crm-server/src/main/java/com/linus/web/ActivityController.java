@@ -3,12 +3,11 @@ package com.linus.web;
 import com.github.pagehelper.PageInfo;
 import com.linus.model.TActivity;
 import com.linus.query.ActivityQuery;
+import com.linus.query.UserQuery;
 import com.linus.result.R;
 import com.linus.service.ActivityService;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ActivityController {
@@ -24,5 +23,26 @@ public class ActivityController {
         PageInfo<TActivity> pageInfo = activityService.getActivityByPage(current, activityQuery);
 
         return R.OK(pageInfo);
+    }
+
+
+    @PostMapping("/api/activity")
+    public R addActivity(ActivityQuery activityQuery, @RequestHeader("Authorization") String token){
+        activityQuery.setToken(token);
+        int save = activityService.saveActivity(activityQuery);
+        return save >= 1 ? R.OK() : R.FAIL();
+    }
+
+    @GetMapping("/api/activity/{id}")
+    public R loadActivity(@PathVariable("id")Integer id){
+        TActivity tActivity = activityService.getActivityById(id);
+        return R.OK(tActivity);
+    }
+
+    @PutMapping("/api/activity")
+    public R editUser(ActivityQuery activityQuery, @RequestHeader("Authorization") String token){
+        activityQuery.setToken(token);
+        int update = activityService.updateActivity(activityQuery);
+        return update >= 1 ? R.OK() : R.FAIL();
     }
 }

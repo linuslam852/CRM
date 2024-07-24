@@ -7,7 +7,7 @@
 6 silly config:load:file:D:\CRM\tools\node-v20.15.1-win-x64\node_global\etc\npmrc
 7 verbose title npm run dev
 8 verbose argv "run" "dev"
-9 verbose logfile logs-max:10 dir:D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-15T09_34_42_622Z-
-10 verbose logfile D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-15T09_34_42_622Z-debug-0.log
+9 verbose logfile logs-max:10 dir:D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-24T16_06_20_220Z-
+10 verbose logfile D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-24T16_06_20_220Z-debug-0.log
 11 silly logfile start cleaning logs, removing 1 files
 12 silly logfile done cleaning log files

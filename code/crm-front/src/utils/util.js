@@ -29,3 +29,7 @@ export function messageConfirm(msg){
         }
     )
 }
+
+export function goBack(){
+    this.$router.go(-1);
+}
