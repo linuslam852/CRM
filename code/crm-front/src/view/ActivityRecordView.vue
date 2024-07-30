@@ -22,7 +22,7 @@ export default {
           {required: true, message: '請選擇結束時間', trigger:'blur'}
         ],
         cost:[
-          {required: true, message: '請選擇結束時間', trigger:'blur'},
+          {required: true, message: '請選擇預算', trigger:'blur'},
           {pattern: /^[0-9]+(\.[0-9]{2})?$/, message:'必須是數字且只能有兩位小數',trigger:'blur'},
         ]
         ,

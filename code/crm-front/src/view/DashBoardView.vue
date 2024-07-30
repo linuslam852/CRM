@@ -98,7 +98,6 @@ export default {
           <span>市場活動</span>
         </template>
           <el-menu-item index="/dashboard/activity">市場活動</el-menu-item>
-          <el-menu-item index="1-2">市場統計</el-menu-item>
       </el-sub-menu>
 
       <el-sub-menu index="2">
@@ -106,8 +105,7 @@ export default {
           <el-icon><Operation /></el-icon>
           <span>線索管理</span>
         </template>
-        <el-menu-item index="2-1">線索管理</el-menu-item>
-        <el-menu-item index="2-2">線索統計</el-menu-item>
+        <el-menu-item index="/dashboard/clue">線索管理</el-menu-item>
       </el-sub-menu>
 
       <el-sub-menu index="3">

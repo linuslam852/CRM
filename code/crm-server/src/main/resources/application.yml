@@ -36,3 +36,8 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 
+#定時任務時間
+project:
+  task:
+    delay: 180000
+

@@ -21,9 +21,10 @@ import java.util.Map;
 @SpringBootApplication
 public class CrmServerApplication implements CommandLineRunner {
 
+    public static final Map<String,Object> cacheMap = new HashMap<>();
+
     @Resource
     private RedisTemplate<String,Object> redisTemplate;
-    public static final Map<String, Object> cacheMap = new HashMap<>();
     public static void main(String[] args) {
         SpringApplication.run(CrmServerApplication.class, args);
 

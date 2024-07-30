@@ -1,4 +1,4 @@
-package com.linus.filter;
+package com.linus.config.filter;
 
 import com.linus.constant.Constants;
 import com.linus.model.TUser;

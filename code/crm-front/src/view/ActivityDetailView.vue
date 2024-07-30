@@ -232,7 +232,7 @@ export default {
       @next-click="toPage"
       @current-change="toPage"/>
 
-  <el-dialog v-model="activityRemarkDialogVisible" :title="編輯備註" center draggable>
+  <el-dialog v-model="activityRemarkDialogVisible" title="編輯備註" center draggable>
     <el-form ref="editActivityRemarkRefForm" :model="activityEditRemark" label-width="110px" :rules="editActivityRemarkRules">
       <el-form-item label="備註" prop="noteContent">
         <el-input

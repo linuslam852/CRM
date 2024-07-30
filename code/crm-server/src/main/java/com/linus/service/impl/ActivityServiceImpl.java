@@ -65,4 +65,9 @@ public class ActivityServiceImpl implements ActivityService {
         tActivity.setEditBy(loginUserId);//編輯人
         return tActivityMapper.updateByPrimaryKeySelective(tActivity);
     }
+
+    @Override
+    public List<TActivity> getOnGoingActivities() {
+        return tActivityMapper.selectOnGoingActivities();
+    }
 }

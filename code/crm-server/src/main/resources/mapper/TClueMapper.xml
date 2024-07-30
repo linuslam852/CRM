@@ -27,6 +27,75 @@
     <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
     <result column="edit_by" jdbcType="INTEGER" property="editBy" />
   </resultMap>
+  
+  <resultMap id="ClueResultMap" type="com.linus.model.TClue">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="full_name" jdbcType="VARCHAR" property="fullName" />
+    <result column="appellation" jdbcType="INTEGER" property="appellation" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="weixin" jdbcType="VARCHAR" property="weixin" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="year_income" jdbcType="DECIMAL" property="yearIncome" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="need_loan" jdbcType="INTEGER" property="needLoan" />
+    <result column="intention_state" jdbcType="INTEGER" property="intentionState" />
+    <result column="intention_product" jdbcType="INTEGER" property="intentionProduct" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="next_contact_time" jdbcType="TIMESTAMP" property="nextContactTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="INTEGER" property="createBy" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="edit_by" jdbcType="INTEGER" property="editBy" />
+    <!--一对一关联查询的映射-->
+    <association property="ownerDO" javaType="com.linus.model.TUser">
+      <id column="ownerId" jdbcType="INTEGER" property="id" />
+      <result column="ownerName" jdbcType="VARCHAR" property="name" />
+    </association>
+    <!--一对一关联查询的映射-->
+    <association property="activityDO" javaType="com.linus.model.TActivity">
+      <id column="activityId" jdbcType="INTEGER" property="id" />
+      <result column="activityName" jdbcType="VARCHAR" property="name" />
+    </association>
+    <!--一对一关联查询的映射-->
+    <association property="appellationDO" javaType="com.linus.model.TDicValue">
+      <id column="appellationId" jdbcType="INTEGER" property="id" />
+      <result column="appellationName" jdbcType="VARCHAR" property="typeValue" />
+    </association>
+    <!--一对一关联查询的映射-->
+    <association property="needLoanDO" javaType="com.linus.model.TDicValue">
+      <id column="needLoanId" jdbcType="INTEGER" property="id" />
+      <result column="needLoanName" jdbcType="VARCHAR" property="typeValue" />
+    </association>
+    <!--一对一关联查询的映射-->
+    <association property="intentionStateDO" javaType="com.linus.model.TDicValue">
+      <id column="intentionStateId" jdbcType="INTEGER" property="id" />
+      <result column="intentionStateName" jdbcType="VARCHAR" property="typeValue" />
+    </association>
+    <!--一对一关联查询的映射-->
+    <association property="intentionProductDO" javaType="com.linus.model.TProduct">
+      <id column="intentionProductId" jdbcType="INTEGER" property="id" />
+      <result column="intentionProductName" jdbcType="VARCHAR" property="name" />
+    </association>
+    <!--一对一关联查询的映射-->
+    <association property="stateDO" javaType="com.linus.model.TDicValue">
+      <id column="stateId" jdbcType="INTEGER" property="id" />
+      <result column="stateName" jdbcType="VARCHAR" property="typeValue" />
+    </association>
+    <!--一对一关联查询的映射-->
+    <association property="sourceDO" javaType="com.linus.model.TDicValue">
+      <id column="sourceId" jdbcType="INTEGER" property="id" />
+      <result column="sourceName" jdbcType="VARCHAR" property="typeValue" />
+    </association>
+  </resultMap>
+  
+  
   <sql id="Base_Column_List">
     id, owner_id, activity_id, full_name, appellation, phone, weixin, qq, email, age, 
     job, year_income, address, need_loan, intention_state, intention_product, `state`, 
@@ -38,7 +107,62 @@
     from t_clue
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    <select id="selectClueByPage" resultMap="ClueResultMap">
+        select
+            tc.*,
+            tu1.id ownerId, tu1.name ownerName,
+            ta.id activityId, ta.name activityName,
+            tdv.id appellationId, tdv.type_value appellationName,
+            tdv2.id needLoanId, tdv2.type_value needLoanName,
+            tdv3.id intentionStateId, tdv3.type_value intentionStateName,
+            tp.id intentionProductId,tp.name intentionProductName,
+            tdv4.id stateId, tdv4.type_value stateName,
+            tdv5.id sourceId, tdv5.type_value sourceName
+        from t_clue tc left join t_user tu1 on tc.owner_id = tu1.id
+                        left join t_activity ta on tc.activity_id = ta.id
+                        left join t_dic_value tdv on tc.appellation = tdv.id
+                        left join t_dic_value tdv2 on tc.need_loan = tdv2.id
+                        left join t_dic_value tdv3 on tc.intention_state = tdv3.id
+                        left join t_product tp on tc.intention_product = tp.id
+                        left join t_dic_value tdv4 on tc.state = tdv4.id
+                        left join t_dic_value tdv5 on tc.source = tdv5.id
+        <where>
+          ${filterSQL}
+        </where>
+    </select>
+
+    <select id="selectByCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+      select
+          count(0)
+      from t_clue
+      where phone = #{ohone,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectDetailById" resultMap="ClueResultMap">
+      select
+        tc.*,
+        tu1.id ownerId, tu1.name ownerName,
+        ta.id activityId, ta.name activityName,
+        tdv.id appellationId, tdv.type_value appellationName,
+        tdv2.id needLoanId, tdv2.type_value needLoanName,
+        tdv3.id intentionStateId, tdv3.type_value intentionStateName,
+        tp.id intentionProductId,tp.name intentionProductName,
+        tdv4.id stateId, tdv4.type_value stateName,
+        tdv5.id sourceId, tdv5.type_value sourceName
+      from t_clue tc left join t_user tu1 on tc.owner_id = tu1.id
+                     left join t_activity ta on tc.activity_id = ta.id
+                     left join t_dic_value tdv on tc.appellation = tdv.id
+                     left join t_dic_value tdv2 on tc.need_loan = tdv2.id
+                     left join t_dic_value tdv3 on tc.intention_state = tdv3.id
+                     left join t_product tp on tc.intention_product = tp.id
+                     left join t_dic_value tdv4 on tc.state = tdv4.id
+                     left join t_dic_value tdv5 on tc.source = tdv5.id
+      where tc.id = #{id,jdbcType=INTEGER}
+
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_clue
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -205,7 +329,31 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.linus.model.TClue">
+
+  <insert id="saveClue" keyColumn="id" keyProperty="id" parameterType="com.linus.model.TClue" useGeneratedKeys="true">
+    insert into t_clue (owner_id, activity_id, full_name,
+                        appellation, phone, weixin,
+                        qq, email, age, job,
+                        year_income, address, need_loan,
+                        intention_state, intention_product, `state`,
+                        `source`, description, next_contact_time,
+                        create_time, create_by, edit_time,
+                        edit_by)
+    values 
+        <foreach collection="tClueList" item="tClue" separator=",">
+        (#{tClue.ownerId,jdbcType=INTEGER}, #{tClue.activityId,jdbcType=INTEGER}, #{tClue.fullName,jdbcType=VARCHAR},
+            #{tClue.appellation,jdbcType=INTEGER}, #{tClue.phone,jdbcType=VARCHAR}, #{tClue.weixin,jdbcType=VARCHAR},
+            #{tClue.qq,jdbcType=VARCHAR}, #{tClue.email,jdbcType=VARCHAR}, #{tClue.age,jdbcType=INTEGER}, #{tClue.job,jdbcType=VARCHAR},
+            #{tClue.yearIncome,jdbcType=DECIMAL}, #{tClue.address,jdbcType=VARCHAR}, #{tClue.needLoan,jdbcType=INTEGER},
+            #{tClue.intentionState,jdbcType=INTEGER}, #{tClue.intentionProduct,jdbcType=INTEGER}, #{tClue.state,jdbcType=INTEGER},
+            #{tClue.source,jdbcType=INTEGER}, #{tClue.description,jdbcType=VARCHAR}, #{tClue.nextContactTime,jdbcType=TIMESTAMP},
+            #{tClue.createTime,jdbcType=TIMESTAMP}, #{tClue.createBy,jdbcType=INTEGER}, #{tClue.editTime,jdbcType=TIMESTAMP},
+            #{tClue.editBy,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+  
+  
+    <update id="updateByPrimaryKeySelective" parameterType="com.linus.model.TClue">
     update t_clue
     <set>
       <if test="ownerId != null">

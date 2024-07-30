@@ -4,7 +4,7 @@ import com.linus.config.handler.MyAuthenticationFailureHandler;
 import com.linus.config.handler.MyAuthenticationSuccessHandler;
 import com.linus.config.handler.MyLogoutSuccessHandler;
 import com.linus.constant.Constants;
-import com.linus.filter.TokenVerifyFilter;
+import com.linus.config.filter.TokenVerifyFilter;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
