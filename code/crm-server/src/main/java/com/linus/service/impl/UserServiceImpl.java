@@ -4,8 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.linus.constant.Constants;
 import com.linus.manager.RedisManager;
+import com.linus.mapper.TPermissionMapper;
 import com.linus.mapper.TRoleMapper;
 import com.linus.mapper.TUserMapper;
+import com.linus.model.TPermission;
 import com.linus.model.TRole;
 import com.linus.model.TUser;
 import com.linus.query.BaseQuery;
@@ -20,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.awt.image.AreaAveragingScaleFilter;
@@ -42,6 +45,9 @@ public class UserServiceImpl implements UserService {
     @Resource
     private RedisManager redisManager;
 
+    @Resource
+    private TPermissionMapper tPermissionMapper;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -56,6 +62,18 @@ public class UserServiceImpl implements UserService {
             stringRoleList.add(tRole.getRole());
         });
         tUser.setRoleList(stringRoleList);
+
+        //查詢用戶有哪些菜單權限
+        List<TPermission> menuPermissionsList = tPermissionMapper.selectMenuPermissionByUserId(tUser.getId());
+        tUser.setMemuPermissionList(menuPermissionsList);
+
+        //查詢該用戶有哪些功能權限
+        List<TPermission> buttonPermissionList = tPermissionMapper.selectButtonPermissionByUserId(tUser.getId());
+        List<String> stringPermissionList = new ArrayList<>();
+        buttonPermissionList.forEach(tPermission -> {
+            stringPermissionList.add(tPermission.getCode());
+        });
+        tUser.setPermissionList(stringPermissionList);
         return tUser;
     }
 
@@ -72,6 +90,7 @@ public class UserServiceImpl implements UserService {
         return tUserMapper.selectDetailById(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int saveUser(UserQuery userQuery) {
         TUser tUser = new TUser();
@@ -87,6 +106,7 @@ public class UserServiceImpl implements UserService {
         return tUserMapper.insertSelective(tUser);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateUser(UserQuery userQuery) {
         TUser tUser = new TUser();
@@ -107,11 +127,13 @@ public class UserServiceImpl implements UserService {
         return tUserMapper.updateByPrimaryKeySelective(tUser);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int delUserById(Integer id) {
         return tUserMapper.deleteByPrimaryKey(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int batchDelUserByIds(List<String> idList) {
         return tUserMapper.deleteByIds(idList);

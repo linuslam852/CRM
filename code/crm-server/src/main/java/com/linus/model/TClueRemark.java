@@ -54,6 +54,9 @@ public class TClueRemark implements Serializable {
      * 删除状态（0正常，1删除）
      */
     private Integer deleted;
+    private TUser createDO;
+    private TUser editDO;
+    private TDicValue noteWayDO;
 
     private static final long serialVersionUID = 1L;
 }

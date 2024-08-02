@@ -2,6 +2,7 @@ package com.linus.mapper;
 
 import com.linus.model.TClue;
 import com.linus.query.BaseQuery;
+import com.linus.result.ChartData;
 
 import java.util.List;
 
@@ -25,4 +26,8 @@ public interface TClueMapper {
     int selectByCount(String phone);
 
     TClue selectDetailById(Integer id);
+
+    Integer selectClueByCount();
+
+    List<ChartData> selectBySource();
 }

@@ -13,4 +13,10 @@ public class Constants {
 
     //分頁時每頁顯示10條
     public static final int PAGE_SIZE = 10;
+
+    public static final String EMPTY = "";
+
+    public static final String EXCEL_FILE_NAME = "客戶信息數據";
+
+    public static final String EXPORTEXCEL_URI = "/api/exportExcel";
 }

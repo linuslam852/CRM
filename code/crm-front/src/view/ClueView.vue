@@ -91,9 +91,9 @@ export default {
 </script>
 
 <template>
-  <el-button type="primary" class="btn" @click="addClue()">添加線索</el-button>
-  <el-button type="success" class="btn" @click="importExcel()">導入線索(Excel)</el-button>
-  <el-button type="danger" class="btn" @click="batchDelClue">批量刪除</el-button>
+  <el-button type="primary" class="btn" @click="addClue()" v-hasPermission="'clue:add'">添加線索</el-button>
+  <el-button type="success" class="btn" @click="importExcel()" v-hasPermission="'clue:import'">導入線索(Excel)</el-button>
+  <el-button type="danger" class="btn" @click="batchDelClue" v-hasPermission="'clue:delete'">批量刪除</el-button>
 
   <el-table
       :data="clueList"
@@ -114,14 +114,21 @@ export default {
     <el-table-column property="needLoanDO.typeValue" label="是否貸款"/>
     <el-table-column property="intentionStateDO.typeValue" label="意向狀態"/>
     <el-table-column property="intentionProductDO.name" label="意向產品"/>
-    <el-table-column property="stateDO.typeValue" label="線索狀態"/>
+
+    <el-table-column label="線索狀態">
+      <template #default="scope">
+        <span style="background: chartreuse" v-if="scope.row.state === -1">{{scope.row.stateDO.typeValue}}</span>
+        <span v-else>{{scope.row.stateDO.typeValue}}</span>
+      </template>
+    </el-table-column>
+
     <el-table-column property="sourceDO.typeValue" label="線索來源"/>
     <el-table-column property="nextContactTime" label="下次聯絡時間" width="165"/>
     <el-table-column label="操作" width="230">
       <template #default="scope">
-        <el-button type="primary" @click="view(scope.row.id)" >詳情</el-button>
-        <el-button type="success" @click="edit(scope.row.id)" >編輯</el-button>
-        <el-button type="danger" @click="del(scope.row.id)">刪除</el-button>
+        <el-button type="primary" @click="view(scope.row.id)" v-hasPermission="'clue:view'">詳情</el-button>
+        <el-button type="success" @click="edit(scope.row.id)" v-hasPermission="'clue:edit'">編輯</el-button>
+        <el-button type="danger" @click="del(scope.row.id)" v-hasPermission="'clue:delete'">刪除</el-button>
       </template>
     </el-table-column>
   </el-table>

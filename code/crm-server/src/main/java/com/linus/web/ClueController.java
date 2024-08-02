@@ -8,6 +8,7 @@ import com.linus.query.ClueQuery;
 import com.linus.result.R;
 import com.linus.service.ClueService;
 import jakarta.annotation.Resource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +20,7 @@ public class ClueController {
     @Resource
     private ClueService clueService;
 
+    @PreAuthorize(value="hasAuthority('clue:list')")
     @GetMapping("/api/clues")
     public R cluePage(@RequestParam(value = "current", required = false) Integer current){
         if(current == null){
@@ -29,6 +31,7 @@ public class ClueController {
         return R.OK(pageInfo);
     }
 
+    @PreAuthorize(value="hasAuthority('clue:import')")
     @PostMapping("/api/importExcel")
     public R importExcel(MultipartFile file, @RequestHeader("Authorization")String token) throws IOException {//變量名需要與前端formData的名字相同，否則接收不到
         clueService.importExcel(file.getInputStream(),token);
@@ -41,6 +44,7 @@ public class ClueController {
         return check ? R.OK() : R.FAIL();
     }
 
+    @PreAuthorize(value="hasAuthority('clue:add')")
     @PostMapping("/api/clue")
     public R addActivity(ClueQuery clueQuery, @RequestHeader("Authorization") String token){
         clueQuery.setToken(token);
@@ -48,12 +52,14 @@ public class ClueController {
         return save >= 1 ? R.OK() : R.FAIL();
     }
 
+    @PreAuthorize(value="hasAuthority('clue:view')")
     @GetMapping("/api/clue/detail/{id}")
     public R loadClue(@PathVariable("id")Integer id){
         TClue tClue = clueService.getClueById(id);
         return R.OK(tClue);
     }
 
+    @PreAuthorize(value="hasAuthority('clue:edit')")
     @PutMapping("/api/clue")
     public R editUser(ClueQuery clueQuery, @RequestHeader("Authorization") String token){
         clueQuery.setToken(token);

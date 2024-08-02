@@ -12,6 +12,10 @@ let router = createRouter({
             component: () => import('../view/DashBoardView.vue'),
             children:[
                 {
+                    path: '',
+                    component: () => import('../view/StatisticView.vue'),
+                },
+                {
                     path: 'user',
                     component: () => import('../view/UserView.vue'),
                 },
@@ -52,6 +56,10 @@ let router = createRouter({
                 {
                     path:'clue/detail/:id',
                     component: () => import('../view/ClueDetailView.vue'),
+                },
+                {
+                    path:'customer',
+                    component: () => import('../view/CustomerView.vue'),
                 },
             ]
         },

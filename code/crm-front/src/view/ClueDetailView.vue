@@ -19,12 +19,35 @@ export default {
       },
       clueRemark:{},
       noteWayOptions:[{}],
+      pageSize: 0,
+      total:0,
+      clueRemarkList:[{
+        createByDO:{},
+        editByDO:{},
+        noteWayDO:{},
+      }],
+      convertCustomerDialogVisible:false,
+      customerQuery:{},
+      productOptions : [{}],
+      convertCustomerRules : {
+        product : [
+          { required: true, message: '請選擇意向產品', trigger: ['blur', 'change'] }
+        ],
+        description : [
+          { required: true, message: '客戶描述不能為空', trigger: 'blur' },
+          { min: 5, max: 255, message: '客户描述長度為5-255個字', trigger: 'blur' }
+        ],
+        nextContactTime : [
+          { required: true, message: '請選擇下次聯絡時間', trigger: 'blur' }
+        ]
+      },
 
     }
   },
 
   mounted() {
     this.loadClueDetail();
+    this.loadClueRemarkList(1);
   },
   methods:{
     goBack,
@@ -60,11 +83,57 @@ export default {
         if (resp.data.code === 200) {
           if (typeCode === 'noteWay') {
             this.noteWayOptions = resp.data.data;
+          } else if(typeCode === 'product'){
+            this.productOptions = resp.data.data;
           }
         }
       })
     },
+
+    toPage(current){
+      this.loadClueRemarkList(current);
+    },
+
+    loadClueRemarkList(current){
+      doGet("/api/clue/remark",{
+        current: current, //當前是第幾頁
+        clueId: this.$route.params.id,
+      }).then(resp=> {
+        if(resp.data.code === 200){
+          console.log(resp)
+          this.clueRemarkList = resp.data.data.list;
+          this.pageSize = resp.data.data.pageSize;
+          this.total = resp.data.data.total;
+        }
+      })
+    },
+
+    convertCustomer() {
+      this.convertCustomerDialogVisible = true;
+    },
+
+    convertCustomerSubmit(){
+      this.$refs.convertCustomerRefForm.validate((isValid)=>{
+        if(isValid){
+          doPost("/api/clue/customer",{
+            clueId:this.clueQuery.id,
+            product:this.customerQuery.product,
+            description: this.customerQuery.description,
+            nextContactTime:this.customerQuery.nextContactTime
+          }).then(resp=>{
+              if(resp.data.code === 200){
+                messageTip("轉換成功","success");
+              }else{
+                messageTip("轉換失敗","error");
+              }
+          })
+        }
+      })
+
+    },
+
   },
+
 
 }
 </script>
@@ -182,12 +251,79 @@ export default {
 
     <el-form-item>
       <el-button type="primary" @click="clueRemarkSubmit">提 交</el-button>
-      <el-button type="success" @click="convertCustomer" v-if="clueQuery.state !== -1">轉換客戶</el-button>
+      <el-button type="success" @click="convertCustomer" v-if="clueQuery.state !== -1">轉為客戶</el-button>
       <el-button type="success" plain @click="goBack">返 回</el-button>
     </el-form-item>
 
 
   </el-form>
+
+  <el-table
+      :data="clueRemarkList"
+      style="width: 100%"
+  >
+    <el-table-column type="index" label="序號" width="60" />
+    <el-table-column property="noteWayDO.typeValue" label="跟蹤方式"/>
+    <el-table-column property="noteContent" label="跟蹤內容" />
+    <el-table-column property="createTime" label="跟蹤時間" />
+    <el-table-column property="createDO.name" label="跟蹤人" />
+    <el-table-column property="editTime" label="編輯時間" />
+    <el-table-column property="editDO.name" label="編輯人" />
+
+    <el-table-column label="操作" width="230">
+      <template #default="scope" >
+        <el-button type="success" @click="edit(scope.row.id)">編輯</el-button>
+        <el-button type="danger" @click="del(scope.row.id)">刪除</el-button>
+      </template>
+
+    </el-table-column>
+  </el-table>
+
+  <el-pagination
+      background
+      layout="prev, pager, next"
+      page-size="pageSize"
+      :total="total"
+      @prev-click="toPage"
+      @next-click="toPage"
+      @current-change="toPage"/>
+
+  <el-dialog v-model="convertCustomerDialogVisible" title="編輯備註" center draggable>
+    <el-form ref="convertCustomerRefForm" :model="customerQuery" label-width="110px" :rules="convertCustomerRules">
+      <el-form-item label="意向產品" prop="product">
+        <el-select v-model="customerQuery.product" placeholder="請選擇" style="width: 100%;" @click="loadDicValue('product')">
+          <el-option
+            v-for="item in productOptions"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"/>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="客戶描述" prop="description">
+        <el-input
+            v-model="customerQuery.description"
+            :rows="8"
+            type="textarea"
+            placeholder="請輸入客戶描述"
+        />
+      </el-form-item>
+      <el-form-item label="下次跟蹤時間" prop="nextContactTime">
+        <el-date-picker
+            v-model="customerQuery.nextContactTime"
+            type="datetime"
+            style="width: 100%;"
+            value-format="YYYY-MM-DD HH:mm:ss"
+            placeholder="請選擇下次跟蹤時間"/>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="convertCustomerDialogVisible = false">關 閉</el-button>
+        <el-button type="primary" @click="convertCustomerSubmit">提 交</el-button>
+      </span>
+    </template>
+  </el-dialog>
+
 </template>
 
 <style scoped>

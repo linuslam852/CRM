@@ -1,5 +1,6 @@
 package com.linus.config;
 
+import com.linus.config.handler.MyAccessDeniedHandler;
 import com.linus.config.handler.MyAuthenticationFailureHandler;
 import com.linus.config.handler.MyAuthenticationSuccessHandler;
 import com.linus.config.handler.MyLogoutSuccessHandler;
@@ -8,6 +9,7 @@ import com.linus.config.filter.TokenVerifyFilter;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +21,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+@EnableMethodSecurity
 @Configuration
 public class SecurityConfig {
 
@@ -34,6 +37,9 @@ public class SecurityConfig {
 
     @Resource
     private MyLogoutSuccessHandler myLogoutSuccessHandler;
+
+    @Resource
+    private MyAccessDeniedHandler myAccessDeniedHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -64,6 +70,10 @@ public class SecurityConfig {
                 .logout((logout)->{
                     logout.logoutUrl("/api/logout")
                             .logoutSuccessHandler(myLogoutSuccessHandler);
+                })
+                //沒有權限時執行這個
+                .exceptionHandling((exceptionHandling)->{
+                    exceptionHandling.accessDeniedHandler(myAccessDeniedHandler);
                 })
                 .build();
     }

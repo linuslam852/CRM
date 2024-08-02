@@ -38,7 +38,13 @@ public class TokenVerifyFilter extends OncePerRequestFilter {
             //驗證jwt通過了，讓filter繼續執行
             filterChain.doFilter(request,response);
         } else {
-            String token = request.getHeader("Authorization");
+            String token = null;
+            if(request.getRequestURI().equals(Constants.EXPORTEXCEL_URI)){
+                token = request.getParameter("Authorization");
+            } else {
+                token = request.getHeader("Authorization");
+            }
+
             if (!StringUtils.hasText(token)){
                 R result = R.FAIL(CodeEnum.TOKEN_IS_EMPTY);
 

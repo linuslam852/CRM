@@ -15,7 +15,8 @@ public enum CodeEnum {
     TOKEN_IS_ERROR(903,"請求Token錯誤"),
     TOKEN_IS_NOT_MATCH(904,"請求Token不匹配"),
     LOGOUT_SUCCESS(200,"退出成功"),
-    Data_Access_EXCEPTION(500,"數據庫操作失敗"),
+    DATA_ACCESS_EXCEPTION(500,"數據庫操作失敗"),
+    ACCESS_DENIED(500,"抱歉，你沒有權限訪問"),
 
     ;
 

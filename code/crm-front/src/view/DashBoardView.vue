@@ -25,6 +25,7 @@ export default {
       user : {},
       //控制主體內容是否顯示
       isRouterAlive: true,
+      currentRouterPath:'',
     }
   },
 
@@ -41,10 +42,20 @@ export default {
 
   mounted() {
     //加載當前登入用戶
-    this.loadLoginUser()
+    this.loadLoginUser();
+    this.loadCurrentRouterPath();
   },
 
   methods:{
+    loadCurrentRouterPath(){
+      let path = this.$route.path;
+      let arr = path.split("/");
+      if(arr.length > 3){
+        this.currentRouterPath = "/" + arr[1] + "/" + arr[2];
+      }else{
+        this.currentRouterPath = path;
+      }
+    },
     //折疊或展開menu
     showMenu(){
       this.isCollapse = !this.isCollapse;
@@ -53,6 +64,7 @@ export default {
     //加載當前登入用戶
     loadLoginUser(){
       doGet("/api/login/info",{}).then((resp)=>{
+        console.log(resp)
         this.user = resp.data.data;
       })
     },
@@ -84,7 +96,7 @@ export default {
       <el-menu
         active-text-color="#ffd04b"
         background-color="#334157"
-        default-active="2"
+        :default-active="currentRouterPath"
         text-color="#fff"
         style="border-right: solid 0"
         :unique-opened="true"
@@ -92,74 +104,17 @@ export default {
         :collapse-transition="false"
         :router="true"
     >
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon><OfficeBuilding /></el-icon>
-          <span>市場活動</span>
-        </template>
-          <el-menu-item index="/dashboard/activity">市場活動</el-menu-item>
-      </el-sub-menu>
+        <el-sub-menu :index="index" v-for="(menuPermission, index) in user.memuPermissionList" :key="menuPermission.id">
+          <template #title>
+            <el-icon><component :is="menuPermission.icon"></component></el-icon>
+            <span>{{ menuPermission.name }}</span>
 
-      <el-sub-menu index="2">
-        <template #title>
-          <el-icon><Operation /></el-icon>
-          <span>線索管理</span>
-        </template>
-        <el-menu-item index="/dashboard/clue">線索管理</el-menu-item>
-      </el-sub-menu>
-
-      <el-sub-menu index="3">
-        <template #title>
-          <el-icon><User /></el-icon>
-          <span>客戶管理</span>
-        </template>
-        <el-menu-item index="3-1">客戶管理</el-menu-item>
-        <el-menu-item index="3-2">客戶管理</el-menu-item>
-      </el-sub-menu>
-
-      <el-sub-menu index="4">
-        <template #title>
-          <el-icon><Money/></el-icon>
-          <span>交易管理</span>
-        </template>
-        <el-menu-item index="4-1">交易管理</el-menu-item>
-        <el-menu-item index="4-2">客戶管理</el-menu-item>
-      </el-sub-menu>
-
-      <el-sub-menu index="5">
-        <template #title>
-          <el-icon><Box /></el-icon>
-          <span>產品管理</span>
-        </template>
-        <el-menu-item index="5-1">產品管理</el-menu-item>
-        <el-menu-item index="5-2">產品管理</el-menu-item>
-      </el-sub-menu>
-
-      <el-sub-menu index="6">
-        <template #title>
-          <el-icon><Notebook /></el-icon>
-          <span>字典管理</span>
-        </template>
-        <el-menu-item index="6-1">交易管理</el-menu-item>
-        <el-menu-item index="6-2">客戶管理</el-menu-item>
-      </el-sub-menu>
-
-      <el-sub-menu index="7">
-        <template #title>
-          <el-icon><Stamp /></el-icon>
-          <span>用戶管理</span>
-        </template>
-        <el-menu-item index="/dashboard/user"><el-icon><User /></el-icon>用戶管理</el-menu-item>
-      </el-sub-menu>
-
-      <el-sub-menu index="8">
-        <template #title>
-          <el-icon><Tools /></el-icon>
-          <span>系統管理</span>
-        </template>
-        <el-menu-item index="8-1">系統管理</el-menu-item>
-        <el-menu-item index="8-2">系統管理</el-menu-item>
-      </el-sub-menu>
+          </template>
+          <el-menu-item v-for="subPermission in menuPermission.subPermissionList" :key="subPermission.id" :index="subPermission.url" >
+            <el-icon><component :is="subPermission.icon"></component></el-icon>
+            {{subPermission.name}}
+          </el-menu-item>
+        </el-sub-menu>
     </el-menu>
 
 

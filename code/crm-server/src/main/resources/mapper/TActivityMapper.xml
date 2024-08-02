@@ -103,6 +103,12 @@
       where <![CDATA[start_time  <= now() and end_time >= now()]]>
     </select>
 
+    <select id="selectByCount" resultType="java.lang.Integer">
+      select
+          count(0)
+        from t_activity
+    </select>
+
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_activity

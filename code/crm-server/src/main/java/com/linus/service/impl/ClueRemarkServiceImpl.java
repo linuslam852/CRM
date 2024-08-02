@@ -1,5 +1,8 @@
 package com.linus.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.linus.constant.Constants;
 import com.linus.mapper.TClueRemarkMapper;
 import com.linus.model.TActivityRemark;
 import com.linus.model.TClueRemark;
@@ -12,13 +15,17 @@ import com.linus.utils.JWTUtils;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ClueRemarkServiceImpl implements ClueRemarkService {
     @Resource
     private TClueRemarkMapper tClueRemarkMapper;
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int saveClueRemark(ClueRemarkQuery clueRemarkQuery) {
         TClueRemark tClueRemark = new TClueRemark();
@@ -31,5 +38,13 @@ public class ClueRemarkServiceImpl implements ClueRemarkService {
         Integer loginUserId = JSONUtil.toBean(JWTUtils.parseJWT(clueRemarkQuery.getToken()), TUser.class).getId();
         tClueRemark.setCreateBy(loginUserId);
         return tClueRemarkMapper.insertSelective(tClueRemark);
+    }
+
+    @Override
+    public PageInfo<TClueRemark> getClueRemarkByPage(Integer current, ClueRemarkQuery clueRemarkQuery) {
+        PageHelper.startPage(current, Constants.PAGE_SIZE);
+        List<TClueRemark> list = tClueRemarkMapper.getClueRemarkByPage(clueRemarkQuery);
+        PageInfo<TClueRemark> info = new PageInfo<>(list);
+        return info;
     }
 }

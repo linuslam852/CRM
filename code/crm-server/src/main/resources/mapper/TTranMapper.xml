@@ -25,6 +25,35 @@
     from t_tran
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+
+
+    <select id="selectByTotalTranAmount" resultType="java.math.BigDecimal">
+      select
+          sum(money)
+      from t_tran
+    </select>
+
+  <select id="selectBySuccessTranAmount" resultType="java.math.BigDecimal">
+    select
+      sum(money)
+    from t_tran
+    where stage = 42
+  </select>
+
+  <select id="selectByTotalTranCount" resultType="java.lang.Integer">
+    select
+        count(0)
+    from (select  distinct  customer_id from t_tran) t
+  </select>
+
+  <select id="selectBySuccessTranCount" resultType="java.lang.Integer">
+    select
+      count(0)
+    from (select  distinct  customer_id from t_tran where stage = 42) t
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_tran
     where id = #{id,jdbcType=INTEGER}

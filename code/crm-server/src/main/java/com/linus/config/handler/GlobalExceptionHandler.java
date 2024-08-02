@@ -10,21 +10,22 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler
+    @ExceptionHandler(Exception.class)
     public R handlerException(Exception e) {
         e.printStackTrace();
         return R.FAIL(e.getMessage());
     }
 
-    @ExceptionHandler
+    @ExceptionHandler(AccessDeniedException.class)
     public R handlerException(AccessDeniedException e) {
         e.printStackTrace();
-        return R.FAIL("權限不足");
+        return R.FAIL(CodeEnum.ACCESS_DENIED);
     }
 
-    @ExceptionHandler
+    @ExceptionHandler(DataAccessException.class)
     public R handlerSQLException(DataAccessException e) {
         e.printStackTrace();
-        return R.FAIL(CodeEnum.Data_Access_EXCEPTION);
+        return R.FAIL(CodeEnum.DATA_ACCESS_EXCEPTION);
     }
+
 }

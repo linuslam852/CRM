@@ -17,6 +17,7 @@ import com.linus.utils.JWTUtils;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
 import java.util.Date;
@@ -48,6 +49,7 @@ public class ClueServiceImpl implements ClueService {
         return count <= 0;
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int saveClue(ClueQuery clueQuery) {
         TClue tClue = new TClue();
@@ -67,6 +69,7 @@ public class ClueServiceImpl implements ClueService {
         return tClueMapper.selectDetailById(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateClue(ClueQuery clueQuery) {
         TClue tClue = new TClue();

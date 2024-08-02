@@ -14,6 +14,7 @@ import com.linus.utils.JWTUtils;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -24,6 +25,7 @@ public class ActivityRemarkServiceImpl implements ActivityRemarkService {
     @Resource
     private TActivityRemarkMapper tActivityRemarkMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int saveActivityRemark(ActivityRemarkQuery activityRemarkQuery) {
         TActivityRemark tActivityRemark = new TActivityRemark();
@@ -51,6 +53,7 @@ public class ActivityRemarkServiceImpl implements ActivityRemarkService {
         return tActivityRemarkMapper.selectByPrimaryKey(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateActivityRemark(ActivityRemarkQuery activityRemarkQuery) {
         TActivityRemark tActivityRemark = new TActivityRemark();
@@ -65,6 +68,7 @@ public class ActivityRemarkServiceImpl implements ActivityRemarkService {
         return tActivityRemarkMapper.updateByPrimaryKeySelective(tActivityRemark);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int delActivityRemarkById(Integer id) {
         TActivityRemark tActivityRemark = new TActivityRemark();
