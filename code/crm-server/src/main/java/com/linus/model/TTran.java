@@ -70,6 +70,9 @@ public class TTran implements Serializable {
      * 编辑人
      */
     private Integer editBy;
+    private TClue clueDO = new TClue();
+    private TUser createByDO = new TUser();
+    private TUser editByDO = new TUser();
 
     private static final long serialVersionUID = 1L;
 }

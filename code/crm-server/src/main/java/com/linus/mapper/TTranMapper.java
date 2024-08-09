@@ -1,8 +1,10 @@
 package com.linus.mapper;
 
 import com.linus.model.TTran;
+import com.linus.query.BaseQuery;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface TTranMapper {
     int deleteByPrimaryKey(Integer id);
@@ -24,4 +26,6 @@ public interface TTranMapper {
     int selectByTotalTranCount();
 
     int selectBySuccessTranCount();
+
+    List<TTran> selectTranByPage(BaseQuery build);
 }

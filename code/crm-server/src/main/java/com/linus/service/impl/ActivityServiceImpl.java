@@ -73,4 +73,14 @@ public class ActivityServiceImpl implements ActivityService {
     public List<TActivity> getOnGoingActivities() {
         return tActivityMapper.selectOnGoingActivities();
     }
+
+    @Override
+    public int delActivityById(Integer id) {
+        return tActivityMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int batchDelActivityByIds(List<String> idList) {
+        return tActivityMapper.deleteByIds(idList);
+    }
 }

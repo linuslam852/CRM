@@ -83,4 +83,14 @@ public class ClueServiceImpl implements ClueService {
         tClue.setEditBy(loginUserId);//編輯人
         return tClueMapper.updateByPrimaryKeySelective(tClue);
     }
+
+    @Override
+    public int delClueById(Integer id) {
+        return tClueMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int batchDelClueByIds(List<String> idList) {
+        return tClueMapper.deleteByIds(idList);
+    }
 }

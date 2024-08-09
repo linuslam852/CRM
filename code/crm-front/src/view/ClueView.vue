@@ -1,6 +1,6 @@
 <script>
-import {doGet, doPost} from "../http/httpRequest.js";
-import {messageTip} from "../utils/util.js";
+import {doDelete, doGet, doPost} from "../http/httpRequest.js";
+import {messageConfirm, messageTip} from "../utils/util.js";
 
 export default {
   name: "ClueView",
@@ -21,6 +21,7 @@ export default {
       pageSize: 0,
       total:0,
       importExcelDialogVisible:false,
+      clueIdArray:[],
 
     }
   },
@@ -30,8 +31,12 @@ export default {
   },
 
   methods:{
-    handleSelectionChange(){
-
+    handleSelectionChange(selectionDataArray){
+      this.clueIdArray = [];
+      selectionDataArray.forEach(data=>{
+        let clueId = data.id;
+        this.clueIdArray.push(clueId);
+      })
     },
 
     toPage(current){
@@ -86,6 +91,42 @@ export default {
     view(id){
       this.$router.push("/dashboard/clue/detail/"+id)
     },
+
+    del(id){
+      messageConfirm("你確定要刪除該線索嗎？").then(()=>{
+        doDelete("/api/clue/"+id,{}).then(resp=>{
+          if(resp.data.code === 200){
+            messageTip("刪除成功","success");
+            this.reload();
+          } else {
+            messageTip("刪除失敗，原因： "+ resp.data.msg,"warning");
+          }
+        })
+      }).catch(()=>{
+        messageTip("已取消","warning");
+      })
+    },
+
+    batchDelClue(){
+      if(this.clueIdArray.length <= 0){
+        messageTip("請選擇你要刪除的線索","warning");
+      } else {
+        messageConfirm("你確定要刪除該線索嗎？").then(()=>{
+          let ids = this.clueIdArray.join(",");
+          doDelete("/api/clue",{ids:ids}).then(resp=>{
+            if(resp.data.code === 200){
+              messageTip("批量刪除成功","success");
+              this.reload();
+            } else {
+              messageTip("批量刪除失敗，原因： " + resp.data.msg, "error");
+            }
+          })
+        }).catch(()=>{
+          messageTip("已取消","warning");
+        })
+      }
+    },
+
   }
 }
 </script>
@@ -93,7 +134,7 @@ export default {
 <template>
   <el-button type="primary" class="btn" @click="addClue()" v-hasPermission="'clue:add'">添加線索</el-button>
   <el-button type="success" class="btn" @click="importExcel()" v-hasPermission="'clue:import'">導入線索(Excel)</el-button>
-  <el-button type="danger" class="btn" @click="batchDelClue" v-hasPermission="'clue:delete'">批量刪除</el-button>
+  <el-button type="danger" class="btn" @click="batchDelClue()" v-hasPermission="'clue:delete'">批量刪除</el-button>
 
   <el-table
       :data="clueList"
@@ -110,7 +151,6 @@ export default {
     </el-table-column>
     <el-table-column property="appellationDO.typeValue" label="稱呼"/>
     <el-table-column property="phone" label="手機" width="120"/>
-<!--    <el-table-column property="weixin" label="微信" width="120"/>-->
     <el-table-column property="needLoanDO.typeValue" label="是否貸款"/>
     <el-table-column property="intentionStateDO.typeValue" label="意向狀態"/>
     <el-table-column property="intentionProductDO.name" label="意向產品"/>

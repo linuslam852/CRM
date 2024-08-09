@@ -35,7 +35,7 @@ public class ActivityRemarkController {
     }
 
     @GetMapping("/api/activity/remark/{id}")
-    public R activityRemarkPage(@PathVariable(value = "id") Integer id){
+    public R activityRemark(@PathVariable(value = "id") Integer id){
         TActivityRemark tActivityRemark = activityRemarkService.getActivityRemarkById(id);
         return R.OK(tActivityRemark);
     }

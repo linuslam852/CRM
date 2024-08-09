@@ -35,4 +35,25 @@ public class ClueRemarkController {
         return R.OK(pageInfo);
     }
 
+    @GetMapping("/api/clue/remark/{id}")
+    public R clueRemark(@PathVariable(value = "id") Integer id){
+        TClueRemark tClueRemark = clueRemarkService.getClueRemarkById(id);
+        return R.OK(tClueRemark);
+    }
+
+    @PutMapping("/api/clue/remark")
+    public R editClueRemark(@RequestBody ClueRemarkQuery clueRemarkQuery, @RequestHeader("Authorization")String token){
+        clueRemarkQuery.setToken(token);
+        int save = clueRemarkService.updateClueRemark(clueRemarkQuery);
+        return save >= 1 ? R.OK() : R.FAIL();
+
+    }
+
+    @DeleteMapping("/api/clue/remark/{id}")
+    public R delClueRemark(@PathVariable("id")Integer id){
+        int del = clueRemarkService.delClueRemarkById(id);
+        return del >= 1 ? R.OK() : R.FAIL();
+    }
+
+
 }

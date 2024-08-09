@@ -118,8 +118,6 @@ export default {
     <el-table-column label="操作" width="230">
       <template #default="scope">
         <el-button type="primary" @click="view(scope.row.id)" >詳情</el-button>
-        <el-button type="success" @click="edit(scope.row.id)" >編輯</el-button>
-        <el-button type="danger" @click="del(scope.row.id)">刪除</el-button>
       </template>
     </el-table-column>
   </el-table>

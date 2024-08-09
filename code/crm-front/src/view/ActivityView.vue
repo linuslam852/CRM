@@ -1,8 +1,11 @@
 <script>
-import {doGet} from "../http/httpRequest.js";
+import {doDelete, doGet} from "../http/httpRequest.js";
+import {messageConfirm, messageTip} from "../utils/util.js";
 
 export default {
   name: "ActivityView",
+
+  inject:['reload'],
 
   data(){
     return{
@@ -18,7 +21,8 @@ export default {
         cost:[
           {pattern: /^[0-9]+(\.[0-9]{2})?$/, message:'必須是數字且只能有兩位小數',trigger:'blur'},
         ],
-      }
+      },
+      activityIdArray:[],
     }
   },
 
@@ -27,6 +31,15 @@ export default {
   },
 
   methods:{
+    handleSelectionChange(selectionDataArray){
+      this.activityIdArray = [];
+      selectionDataArray.forEach(data=>{
+        let acitivtyId = data.id;
+        this.activityIdArray.push(acitivtyId);
+      })
+    },
+
+
     getData(current){
       let startTime = '';
       let endTime = '';
@@ -89,6 +102,42 @@ export default {
     view(id){
       this.$router.push("/dashboard/activity/"+id);
     },
+
+    del(id){
+      messageConfirm("你確定要刪除該活動嗎？").then(()=>{
+        doDelete("/api/activity/"+id,{}).then(resp=>{
+          if(resp.data.code === 200){
+            messageTip("刪除成功","success");
+            this.reload();
+          } else {
+            messageTip("刪除失敗，原因： "+ resp.data.msg,"warning");
+          }
+        })
+      }).catch(()=>{
+        messageTip("已取消","warning");
+      })
+    },
+
+    batchDelAcitvity(){
+      if(this.activityIdArray.length <= 0){
+        messageTip("請選擇你要刪除的活動","warning");
+      } else {
+        messageConfirm("你確定要刪除該活動嗎？").then(()=>{
+          let ids = this.activityIdArray.join(",");
+          doDelete("/api/activity",{ids:ids}).then(resp=>{
+            if(resp.data.code === 200){
+              messageTip("批量刪除成功","success");
+              this.reload();
+            } else {
+              messageTip("批量刪除失敗，原因： " + resp.data.msg, "error");
+            }
+          })
+        }).catch(()=>{
+          messageTip("已取消","warning");
+        })
+      }
+    },
+
   }
 }
 </script>
@@ -145,10 +194,11 @@ export default {
   </el-form>
 
   <el-button type="primary" @click="add()">添加市場活動</el-button>
-  <el-button type="danger" @click="batchDel()">批量刪除</el-button>
+  <el-button type="danger" @click="batchDelAcitvity()">批量刪除</el-button>
   <el-table
       :data="activityList"
       style="width: 100%"
+      @selection-change="handleSelectionChange"
   >
     <el-table-column type="selection" width="55" />
     <el-table-column type="index" label="序號" width="60" />

@@ -30,4 +30,6 @@ public interface TActivityMapper {
     List<TActivity> selectOnGoingActivities();
 
     Integer selectByCount();
+
+    int deleteByIds(List<String> idList);
 }

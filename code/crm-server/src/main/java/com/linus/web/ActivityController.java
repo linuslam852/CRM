@@ -9,6 +9,9 @@ import com.linus.service.ActivityService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 public class ActivityController {
 
@@ -44,5 +47,18 @@ public class ActivityController {
         activityQuery.setToken(token);
         int update = activityService.updateActivity(activityQuery);
         return update >= 1 ? R.OK() : R.FAIL();
+    }
+
+    @DeleteMapping("/api/activity/{id}")
+    public R delActivity(@PathVariable("id")Integer id){
+        int del = activityService.delActivityById(id);
+        return del >= 1 ? R.OK() : R.FAIL();
+    }
+
+    @DeleteMapping("/api/activity")
+    public R batchDelActivity(@RequestParam("ids")String ids){
+        List<String> idList = Arrays.asList(ids.split(","));
+        int batchDel = activityService.batchDelActivityByIds(idList);
+        return batchDel >= idList.size() ? R.OK() : R.FAIL();
     }
 }

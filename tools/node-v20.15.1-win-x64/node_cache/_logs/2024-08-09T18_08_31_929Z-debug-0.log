@@ -7,17 +7,17 @@
 6 silly config:load:file:D:\CRM\tools\node-v20.15.1-win-x64\node_global\etc\npmrc
 7 verbose title npm install types-registry@latest
 8 verbose argv "install" "--ignore-scripts" "types-registry@latest"
-9 verbose logfile logs-max:10 dir:D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-22T14_15_52_220Z-
-10 verbose logfile D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-07-22T14_15_52_220Z-debug-0.log
+9 verbose logfile logs-max:10 dir:D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-08-09T18_08_31_929Z-
+10 verbose logfile D:\CRM\tools\node-v20.15.1-win-x64\node_cache\_logs\2024-08-09T18_08_31_929Z-debug-0.log
 11 silly logfile start cleaning logs, removing 1 files
 12 silly logfile done cleaning log files
-13 http fetch GET 200 https://registry.npmjs.org/types-registry 257ms (cache revalidated)
+13 http fetch GET 200 https://registry.npmjs.org/types-registry 205ms (cache revalidated)
 14 silly idealTree buildDeps
 15 silly fetch manifest types-registry@0.1.685
 16 silly placeDep ROOT types-registry@0.1.685 REPLACE for:  want: 0.1.685
 17 silly reify moves {}
 18 silly audit bulk request { 'types-registry': [ '0.1.685' ] }
-19 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 201ms
+19 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 222ms
 20 silly audit report {}
 21 verbose exit 0
 22 info ok

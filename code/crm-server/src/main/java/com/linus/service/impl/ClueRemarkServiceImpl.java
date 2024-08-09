@@ -47,4 +47,33 @@ public class ClueRemarkServiceImpl implements ClueRemarkService {
         PageInfo<TClueRemark> info = new PageInfo<>(list);
         return info;
     }
+
+    @Override
+    public TClueRemark getClueRemarkById(Integer id) {
+        return tClueRemarkMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateClueRemark(ClueRemarkQuery clueRemarkQuery) {
+
+        TClueRemark tClueRemark = new TClueRemark();
+        //名字和類型相同才可以賦值
+        BeanUtils.copyProperties(clueRemarkQuery,tClueRemark);
+
+        tClueRemark.setEditTime(new Date());
+
+        //獲取當前登入人的id
+        Integer loginUserId = JSONUtil.toBean(JWTUtils.parseJWT(clueRemarkQuery.getToken()), TUser.class).getId();
+        tClueRemark.setEditBy(loginUserId);
+        return tClueRemarkMapper.updateByPrimaryKeySelective(tClueRemark);
+
+    }
+
+    @Override
+    public int delClueRemarkById(Integer id) {
+        TClueRemark tClueRemark = new TClueRemark();
+        tClueRemark.setId(id);
+        tClueRemark.setDeleted(1); //邏輯刪除
+        return tClueRemarkMapper.updateByPrimaryKeySelective(tClueRemark);
+    }
 }

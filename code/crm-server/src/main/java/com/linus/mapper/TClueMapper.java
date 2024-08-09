@@ -30,4 +30,6 @@ public interface TClueMapper {
     Integer selectClueByCount();
 
     List<ChartData> selectBySource();
+
+    int deleteByIds(List<String> idList);
 }

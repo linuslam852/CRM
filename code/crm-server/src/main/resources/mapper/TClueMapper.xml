@@ -184,7 +184,18 @@
     delete from t_clue
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.linus.model.TClue" useGeneratedKeys="true">
+
+
+    <delete id="deleteByIds" parameterType="java.util.List">
+      delete from t_clue
+      where id in
+      <foreach collection="idList" item="id" open="(" close=")" separator=",">
+        #{id,jdbcType=INTEGER}
+      </foreach>
+    </delete>
+
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.linus.model.TClue" useGeneratedKeys="true">
     insert into t_clue (owner_id, activity_id, full_name, 
       appellation, phone, weixin, 
       qq, email, age, job, 

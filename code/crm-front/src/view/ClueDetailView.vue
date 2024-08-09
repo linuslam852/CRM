@@ -1,9 +1,10 @@
 <script>
-import {doGet, doPost} from "../http/httpRequest.js";
-import {goBack, messageTip} from "../utils/util.js";
+import {doDelete, doGet, doPost, doPut} from "../http/httpRequest.js";
+import {goBack, messageConfirm, messageTip} from "../utils/util.js";
 
 export default {
   name: "ClueDetailView",
+  inject:["reload"],
   data(){
     return{
       clueQuery:{
@@ -27,6 +28,7 @@ export default {
         noteWayDO:{},
       }],
       convertCustomerDialogVisible:false,
+      clueRemarkDialogVisible:false,
       customerQuery:{},
       productOptions : [{}],
       convertCustomerRules : {
@@ -41,6 +43,14 @@ export default {
           { required: true, message: '請選擇下次聯絡時間', trigger: 'blur' }
         ]
       },
+      editClueRemarkRules:{
+        noteContent:[
+          {min: 5, max:255, message:'備註內容長度為5-255個字符',trigger:'blur'}
+        ]
+      },
+      clueEditRemark:{},
+
+
 
     }
   },
@@ -130,6 +140,48 @@ export default {
         }
       })
 
+    },
+
+    edit(id){
+      this.clueRemarkDialogVisible = true;
+      doGet("/api/clue/remark/"+id,{}).then(resp=>{
+        if(resp.data.code === 200){
+          this.clueEditRemark = resp.data.data;
+        }
+      })
+    },
+
+    editClueRemarkSubmit(){
+      this.$refs.editClueRemarkRefForm.validate(isValid => {
+        if(isValid){
+          doPut("/api/clue/remark",{
+            id: this.clueEditRemark.id,
+            noteContent: this.clueEditRemark.noteContent
+          }).then(resp=>{
+            if(resp.data.code === 200){
+              messageTip("修改成功","success");
+              this.reload();
+            }else{
+              messageTip("修改失敗","error");
+            }
+          })
+        }
+      })
+    },
+
+    del(id){
+      messageConfirm("你確定要刪除該數據嗎？").then(()=>{
+        doDelete("/api/clue/remark/"+id,{}).then(resp=>{
+          if(resp.data.code === 200){
+            messageTip("刪除成功","success");
+            this.reload();
+          }else{
+            messageTip("刪除失敗， 原因" + resp.data.msg,"error");
+          }
+        }).catch(()=>{
+          messageTip("取消刪除","warning");
+        })
+      })
     },
 
   },
@@ -323,6 +375,27 @@ export default {
       </span>
     </template>
   </el-dialog>
+
+
+  <el-dialog v-model="clueRemarkDialogVisible" title="編輯備註" center draggable>
+    <el-form ref="editClueRemarkRefForm" :model="clueEditRemark" label-width="110px" :rules="editClueRemarkRules">
+      <el-form-item label="備註" prop="noteContent">
+        <el-input
+            v-model="clueEditRemark.noteContent"
+            :rows="8"
+            type="textarea"
+            placeholder="請輸入活動備註"
+        />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="clueRemarkDialogVisible = false">關 閉</el-button>
+        <el-button type="primary" @click="editClueRemarkSubmit">提 交</el-button>
+      </span>
+    </template>
+  </el-dialog>
+
 
 </template>
 

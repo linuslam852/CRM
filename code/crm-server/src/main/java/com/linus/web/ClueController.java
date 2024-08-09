@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 public class ClueController {
@@ -65,5 +67,18 @@ public class ClueController {
         clueQuery.setToken(token);
         int update = clueService.updateClue(clueQuery);
         return update >= 1 ? R.OK() : R.FAIL();
+    }
+
+    @DeleteMapping("/api/clue/{id}")
+    public R delClue(@PathVariable("id")Integer id){
+        int del = clueService.delClueById(id);
+        return del >= 1 ? R.OK() : R.FAIL();
+    }
+
+    @DeleteMapping("/api/clue")
+    public R batchDelClue(@RequestParam("ids")String ids){
+        List<String> idList = Arrays.asList(ids.split(","));
+        int batchDel = clueService.batchDelClueByIds(idList);
+        return batchDel >= idList.size() ? R.OK() : R.FAIL();
     }
 }
