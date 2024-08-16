@@ -11,6 +11,7 @@ import com.linus.result.R;
 import com.linus.service.CustomerService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,6 +56,13 @@ public class CustomerController {
         EasyExcel.write(response.getOutputStream(),CustomerExcel.class)
                 .sheet()
                 .doWrite(dataList);
+    }
+
+
+    @GetMapping("/api/customer/detail/{id}")
+    public R loadClue(@PathVariable("id")Integer id){
+        TCustomer tCustomer = customerService.getCustomerById(id);
+        return R.OK(tCustomer);
     }
 
 }

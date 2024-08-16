@@ -14,4 +14,5 @@ public interface CustomerService {
 
     List<CustomerExcel> getCustomerByExcel(List<String> idList);
 
+    TCustomer getCustomerById(Integer id);
 }

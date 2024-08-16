@@ -69,4 +69,10 @@ public class CustomerServiceImpl implements CustomerService {
         });
         return customerExcelList;
     }
+
+    @Override
+    public TCustomer getCustomerById(Integer id) {
+        return tCustomerMapper.selectDetailById(id);
+    }
+
 }

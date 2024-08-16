@@ -23,4 +23,6 @@ public interface TCustomerMapper {
     List<TCustomer> selectCustomerByExcel(List<String> idList);
 
     Integer selectByCount();
+
+    TCustomer selectDetailById(Integer id);
 }

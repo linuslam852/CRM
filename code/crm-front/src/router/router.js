@@ -65,6 +65,10 @@ let router = createRouter({
                     path:'tran',
                     component: () => import('../view/TranView.vue'),
                 },
+                {
+                    path:'customer/detail/:id',
+                    component: () => import('../view/CustomerDetailView.vue'),
+                },
             ]
         },
     ]

@@ -150,6 +150,15 @@
       from t_customer
     </select>
 
+    <select id="selectDetailById" resultMap="CustomerResultMap">
+        select
+          tcu.*,
+          tp.id intentionProductId,tp.name intentionProductName
+        from t_customer tcu  left join t_product tp on tcu.product = tp.id
+        where tcu.id = #{id,jdbcType=INTEGER}
+    </select>
+
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_customer
     where id = #{id,jdbcType=INTEGER}

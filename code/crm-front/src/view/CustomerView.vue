@@ -79,6 +79,10 @@ export default {
         this.exportExcel(ids);
     },
 
+    view(id){
+      this.$router.push("/dashboard/customer/detail/"+id)
+    },
+
   },
 
 }
