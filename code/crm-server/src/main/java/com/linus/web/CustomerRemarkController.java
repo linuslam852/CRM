@@ -1,9 +1,7 @@
 package com.linus.web;
 
 import com.github.pagehelper.PageInfo;
-import com.linus.model.TClueRemark;
 import com.linus.model.TCustomerRemark;
-import com.linus.query.ClueRemarkQuery;
 import com.linus.query.CustomerRemarkQuery;
 import com.linus.result.R;
 import com.linus.service.CustomerRemarkService;
@@ -17,7 +15,7 @@ public class CustomerRemarkController {
     private CustomerRemarkService customerRemarkService;
 
     @PostMapping("/api/customer/remark")
-    public R addClueRemark(@RequestBody CustomerRemarkQuery customerRemarkQuery, @RequestHeader("Authorization")String token){
+    public R addCustomerRemark(@RequestBody CustomerRemarkQuery customerRemarkQuery, @RequestHeader("Authorization")String token){
         customerRemarkQuery.setToken(token);
         int save = customerRemarkService.saveCustomerRemark(customerRemarkQuery);
         return save >= 1 ? R.OK() : R.FAIL();

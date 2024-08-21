@@ -53,6 +53,7 @@ public class ClueRemarkServiceImpl implements ClueRemarkService {
         return tClueRemarkMapper.selectByPrimaryKey(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateClueRemark(ClueRemarkQuery clueRemarkQuery) {
 
@@ -69,6 +70,7 @@ public class ClueRemarkServiceImpl implements ClueRemarkService {
 
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int delClueRemarkById(Integer id) {
         TClueRemark tClueRemark = new TClueRemark();

@@ -1,9 +1,7 @@
 package com.linus.web;
 
 import com.github.pagehelper.PageInfo;
-import com.linus.model.TActivityRemark;
 import com.linus.model.TClueRemark;
-import com.linus.query.ActivityRemarkQuery;
 import com.linus.query.ClueRemarkQuery;
 import com.linus.result.R;
 import com.linus.service.ClueRemarkService;

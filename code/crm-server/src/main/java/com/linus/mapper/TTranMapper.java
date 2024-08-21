@@ -28,4 +28,6 @@ public interface TTranMapper {
     int selectBySuccessTranCount();
 
     List<TTran> selectTranByPage(BaseQuery build);
+
+    TTran selectDetailById(Integer id);
 }

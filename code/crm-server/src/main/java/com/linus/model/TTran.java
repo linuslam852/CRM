@@ -73,6 +73,7 @@ public class TTran implements Serializable {
     private TClue clueDO = new TClue();
     private TUser createByDO = new TUser();
     private TUser editByDO = new TUser();
+    private TDicValue stageDO = new TDicValue();
 
     private static final long serialVersionUID = 1L;
 }

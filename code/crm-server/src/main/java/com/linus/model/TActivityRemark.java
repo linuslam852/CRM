@@ -5,48 +5,46 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 市场活动备注表
+ * 市場活動備註表
  * t_activity_remark
  */
 @Data
 public class TActivityRemark implements Serializable {
-    /**
-     * 主键，自动增长，活动备注ID
-     */
+
     private Integer id;
 
     /**
-     * 活动ID
+     * 活動ID
      */
     private Integer activityId;
 
     /**
-     * 备注内容
+     * 備註內容
      */
     private String noteContent;
 
     /**
-     * 备注创建时间
+     * 活動備註時間
      */
     private Date createTime;
 
     /**
-     * 备注创建人
+     * 備註創建人
      */
     private Integer createBy;
 
     /**
-     * 备注编辑时间
+     * 備註編輯時間
      */
     private Date editTime;
 
     /**
-     * 备注编辑人
+     * 備註編輯人
      */
     private Integer editBy;
 
     /**
-     * 删除状态（0正常，1删除）
+     * 刪除狀態(0正常，1刪除）
      */
     private Integer deleted;
     private TUser createDO;

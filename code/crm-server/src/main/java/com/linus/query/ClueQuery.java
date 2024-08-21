@@ -22,10 +22,6 @@ public class ClueQuery extends BaseQuery{
 
     private String phone;
 
-    private String weixin;
-
-    private String qq;
-
     private String email;
 
     private Integer age;

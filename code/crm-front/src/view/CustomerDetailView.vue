@@ -44,9 +44,31 @@ export default {
           {min: 5, max:255, message:'備註內容長度為5-255個字符',trigger:'blur'}
         ]
       },
+
+      createTranRules : {
+        money : [
+          { required: true, message: '請輸入交易金額', trigger: 'blur' },
+          { pattern : /^[0-9]+(\.[0-9]{2})?$/, message: '交易金額必須是整數或者只有兩位小數', trigger: 'blur'}
+        ],
+        expectedDate : [
+          { required: true, message: '請選擇預計成交時間', trigger: 'blur' },
+        ],
+        stage : [
+          { required: true, message: '請選擇交易階段', trigger: 'blur' },
+        ],
+        description : [
+          { required: true, message: '描述不能為空', trigger: 'blur' },
+          { min: 5, max: 255, message: '描述長度範圍為5-255個字符', trigger: 'blur' }
+        ],
+        nextContactTime : [
+          { required: true, message: '請選擇下次跟蹤時間', trigger: 'blur' },
+        ]
+      },
       customerEditRemark:{},
       clueId:0,
-
+      createTranDialogVisible:false,
+      tranQuery : {},
+      stageOptions : [{}],
     }
   },
 
@@ -80,19 +102,19 @@ export default {
     customerRemarkSubmit(){
       this.$refs.customerRemarkRefForm.validate(isValid => {
         if(isValid){
-      doPost("/api/customer/remark",{
-        customerId : this.customerQuery.id,
-        noteContent: this.customerRemark.noteContent,
-        noteWay: this.customerRemark.noteWay
-      }).then(resp=>{
-        if(resp.data.code === 200){
-          messageTip("提交成功","success");
-          this.customerRemark.noteContent = "";
-          this.reload();
-        }else{
-          messageTip("提交失敗","error");
-        }
-      })
+          doPost("/api/customer/remark",{
+            customerId : this.customerQuery.id,
+            noteContent: this.customerRemark.noteContent,
+            noteWay: this.customerRemark.noteWay
+          }).then(resp=>{
+            if(resp.data.code === 200){
+              messageTip("提交成功","success");
+              this.customerRemark.noteContent = "";
+              this.reload();
+            }else{
+              messageTip("提交失敗","error");
+            }
+          })
       }
     })
    },
@@ -104,6 +126,8 @@ export default {
             this.noteWayOptions = resp.data.data;
           } else if(typeCode === 'product'){
             this.productOptions = resp.data.data;
+          } else if (typeCode === 'stage') {
+            this.stageOptions = resp.data.data;
           }
         }
       })
@@ -120,7 +144,6 @@ export default {
         customerId: this.$route.params.id,
       }).then(resp=> {
         if(resp.data.code === 200){
-          console.log(resp)
           this.customerRemarkList = resp.data.data.list;
           this.pageSize = resp.data.data.pageSize;
           this.total = resp.data.data.total;
@@ -169,6 +192,33 @@ export default {
         })
       })
     },
+
+    createTran() {
+      this.createTranDialogVisible = true;
+    },
+
+    createTranSubmit(){
+      this.$refs.createTranRefForm.validate((isValid)=>{
+        if(isValid){
+          doPost("/api/customer/tran",{
+            customerId : this.customerQuery.id,
+            money : this.tranQuery.money,
+            expectedDate : this.tranQuery.expectedDate,
+            stage : this.tranQuery.stage,
+            description : this.tranQuery.description,
+            nextContactTime : this.tranQuery.nextContactTime
+          }).then(resp=>{
+            if(resp.data.code === 200){
+              messageTip("創建交易成功","success");
+              this.reload();
+            }else{
+              messageTip("創建交易失敗","error");
+            }
+          })
+        }
+      })
+    },
+
   }
 }
 </script>
@@ -177,8 +227,7 @@ export default {
   <el-form
       ref="clueRefForm"
       :model="clueQuery"
-      :rules="clueRules"
-      label-width="100px"
+      label-width="110px"
       style="max-width: 95%;">
 
     <el-form-item label="負責人" >
@@ -199,15 +248,6 @@ export default {
 
     <el-form-item label="手機" ><!--此时是编辑-->
       <div class="detail">{{clueQuery.phone}}</div>
-    </el-form-item>
-
-
-    <el-form-item label="微信">
-      <div class="detail">{{clueQuery.weixin}}</div>
-    </el-form-item>
-
-    <el-form-item label="QQ" prop="qq">
-      <div class="detail">{{clueQuery.qq}}</div>
     </el-form-item>
 
     <el-form-item label="郵箱" >
@@ -296,7 +336,7 @@ export default {
 
     <el-form-item>
       <el-button type="primary" @click="customerRemarkSubmit">提 交</el-button>
-      <el-button type="success" @click="convertCustomer" v-if="clueQuery.state !== -1">轉為客戶</el-button>
+      <el-button type="success" @click="createTran" >創建交易</el-button>
       <el-button type="success" plain @click="goBack">返 回</el-button>
     </el-form-item>
 
@@ -351,6 +391,60 @@ export default {
       </span>
     </template>
   </el-dialog>
+
+  <!--創建交易對話框-->
+  <el-dialog v-model="createTranDialogVisible" title="創建交易" width="55%" center>
+    <el-form ref="createTranRefForm" :model="tranQuery" label-width="110px" :rules="createTranRules">
+
+      <el-form-item label="交易金額" prop="money">
+        <el-input v-model="tranQuery.money"/>
+      </el-form-item>
+
+      <el-form-item label="預計成交時間" prop="expectedDate">
+        <el-date-picker
+            v-model="tranQuery.expectedDate"
+            type="datetime"
+            style="width: 100%;"
+            value-format="YYYY-MM-DD HH:mm:ss"
+            placeholder="請選擇預計成交時間"/>
+      </el-form-item>
+
+      <el-form-item label="交易階段" prop="stage">
+        <el-select v-model="tranQuery.stage" placeholder="請選擇交易階段" style="width: 100%;" @click="loadDicValue('stage')">
+          <el-option
+              v-for="item in stageOptions"
+              :key="item.id"
+              :label="item.typeValue"
+              :value="item.id"/>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="交易描述" prop="description">
+        <el-input
+            v-model="tranQuery.description"
+            :rows="8"
+            type="textarea"
+            placeholder="請輸入交易描述"/>
+      </el-form-item>
+
+      <el-form-item label="下次跟蹤時間" prop="nextContactTime">
+        <el-date-picker
+            v-model="tranQuery.nextContactTime"
+            type="datetime"
+            style="width: 100%;"
+            value-format="YYYY-MM-DD HH:mm:ss"
+            placeholder="請選擇下次跟蹤時間"/>
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="createTranDialogVisible = false">關 閉</el-button>
+        <el-button type="primary" @click="createTranSubmit">提 交</el-button>
+      </span>
+    </template>
+  </el-dialog>
+
+
 </template>
 
 <style scoped>

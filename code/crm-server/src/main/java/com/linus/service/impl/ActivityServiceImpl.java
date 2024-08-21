@@ -74,11 +74,13 @@ public class ActivityServiceImpl implements ActivityService {
         return tActivityMapper.selectOnGoingActivities();
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int delActivityById(Integer id) {
         return tActivityMapper.deleteByPrimaryKey(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int batchDelActivityByIds(List<String> idList) {
         return tActivityMapper.deleteByIds(idList);

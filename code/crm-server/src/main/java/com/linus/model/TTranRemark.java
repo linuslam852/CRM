@@ -55,5 +55,9 @@ public class TTranRemark implements Serializable {
      */
     private Integer deleted;
 
+    private TUser createDO;
+    private TUser editDO;
+    private TDicValue noteWayDO;
+
     private static final long serialVersionUID = 1L;
 }

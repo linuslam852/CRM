@@ -6,7 +6,8 @@ export default {
   data() {
     return {
       tranList : [{
-        cluePO : {}
+        cluePO : {},
+        stageDO :{},
       }],
       pageSize : 0,
       total : 0,
@@ -58,7 +59,7 @@ export default {
     <el-table-column property="clueDO.phone" label="客戶手機"/>
     <el-table-column property="money" label="交易金額"/>
     <el-table-column property="expectedDate" label="預計成交時間"/>
-    <el-table-column property="stage" label="交易階段"/>
+    <el-table-column property="stageDO.typeValue" label="交易階段"/>
     <el-table-column property="nextContactTime" label="下次跟蹤時間"/>
     <el-table-column property="createTime" label="創建時間"/>
     <el-table-column label="操作" width="90">

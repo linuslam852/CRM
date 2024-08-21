@@ -10,25 +10,23 @@ import com.linus.config.converter.*;
 import lombok.Data;
 
 /**
- * 线索表
+ * 線索表
  * t_clue
  */
 @ExcelIgnoreUnannotated
 @Data
 public class TClue implements Serializable {
-    /**
-     * 主键，自动增长，线索ID
-     */
+
     private Integer id;
 
     /**
-     * 线索所属人ID
+     * 線索負責人ID
      */
     @ExcelProperty("負責人")
     private Integer ownerId;
 
     /**
-     * 活动ID
+     * 活動ID
      */
     @ExcelProperty("所屬活動")
     private Integer activityId;
@@ -40,43 +38,32 @@ public class TClue implements Serializable {
     private String fullName;
 
     /**
-     * 称呼
+     * 稱謂
      */
     @ExcelProperty(value = "稱謂",converter = AppellationConverter.class)
     private Integer appellation;
 
     /**
-     * 手机号
+     * 手機
      */
     @ExcelProperty("手機")
     private String phone;
 
-    /**
-     * 微信号
-     */
-    @ExcelProperty("微信")
-    private String weixin;
 
     /**
-     * QQ号
-     */
-    @ExcelProperty("QQ")
-    private String qq;
-
-    /**
-     * 邮箱
+     * 郵箱
      */
     @ExcelProperty("Email")
     private String email;
 
     /**
-     * 年龄
+     * 年齡
      */
     @ExcelProperty("年齡")
     private Integer age;
 
     /**
-     * 职业
+     * 職業
      */
     @ExcelProperty("職業")
     private String job;
@@ -94,63 +81,63 @@ public class TClue implements Serializable {
     private String address;
 
     /**
-     * 是否需要贷款（0不需要，1需要）
+     * 是否貸款（0不需要，1需要）
      */
     @ExcelProperty(value = "是否貸款",converter = NeedLoanConverter.class)
     private Integer needLoan;
 
     /**
-     * 意向状态
+     * 意向狀態
      */
     @ExcelProperty(value = "意向狀態",converter = IntentionStateConverter.class)
     private Integer intentionState;
 
     /**
-     * 意向产品
+     * 意向產品
      */
     @ExcelProperty(value = "意向產品",converter = IntentionProductConverter.class)
     private Integer intentionProduct;
 
     /**
-     * 线索状态
+     * 線索狀態
      */
     @ExcelProperty(value = "線索狀態",converter = StateConverter.class)
     private Integer state;
 
     /**
-     * 线索来源
+     * 線索來源
      */
     @ExcelProperty(value = "線索來源",converter = SourceConverter.class)
     private Integer source;
 
     /**
-     * 线索描述
+     * 線索描述
      */
     @ExcelProperty("線索描述")
     private String description;
 
     /**
-     * 下次联系时间
+     * 下次聯絡時間
      */
     private Date nextContactTime;
 
     /**
-     * 创建时间
+     * 創建時間
      */
     private Date createTime;
 
     /**
-     * 创建人
+     * 創建人
      */
     private Integer createBy;
 
     /**
-     * 编辑时间
+     * 編輯時間
      */
     private Date editTime;
 
     /**
-     * 编辑人
+     * 編輯人
      */
     private Integer editBy;
 

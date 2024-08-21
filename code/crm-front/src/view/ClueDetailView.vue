@@ -133,13 +133,13 @@ export default {
           }).then(resp=>{
               if(resp.data.code === 200){
                 messageTip("轉換成功","success");
+                this.reload();
               }else{
                 messageTip("轉換失敗","error");
               }
           })
         }
       })
-
     },
 
     edit(id){
@@ -218,14 +218,6 @@ export default {
       <div class="detail">{{clueQuery.phone}}</div>
     </el-form-item>
 
-
-    <el-form-item label="微信">
-      <div class="detail">{{clueQuery.weixin}}</div>
-    </el-form-item>
-
-    <el-form-item label="QQ" prop="qq">
-      <div class="detail">{{clueQuery.qq}}</div>
-    </el-form-item>
 
     <el-form-item label="郵箱" >
       <div class="detail">{{clueQuery.email}}</div>

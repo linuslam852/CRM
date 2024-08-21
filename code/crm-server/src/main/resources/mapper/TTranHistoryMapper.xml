@@ -10,6 +10,24 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="create_by" jdbcType="INTEGER" property="createBy" />
   </resultMap>
+
+  <resultMap id="HistoryResultMap" type="com.linus.model.TTranHistory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="tran_id" jdbcType="INTEGER" property="tranId" />
+    <result column="stage" jdbcType="INTEGER" property="stage" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="expected_date" jdbcType="TIMESTAMP" property="expectedDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="INTEGER" property="createBy" />
+    <association property="createByDO" javaType="com.linus.model.TUser">
+      <id column="createById" jdbcType="INTEGER" property="id" />
+      <result column="createByName" jdbcType="VARCHAR" property="name" />
+    </association>
+    <association property="stageDO" javaType="com.linus.model.TDicValue">
+      <id column="stageId" jdbcType="INTEGER" property="id" />
+      <result column="stageName" jdbcType="VARCHAR" property="typeValue" />
+    </association>
+  </resultMap>
   <sql id="Base_Column_List">
     id, tran_id, stage, money, expected_date, create_time, create_by
   </sql>
@@ -19,7 +37,24 @@
     from t_tran_history
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    <select id="getTranHistoryByPage" resultMap="HistoryResultMap">
+      select
+      tth.*,
+      tu1.id createById, tu1.name createByName,
+      tdv.id stageId, tdv.type_value stageName
+      from t_tran_history tth left join t_user tu1 on tth.create_by = tu1.id
+      left join t_dic_value tdv on tth.stage = tdv.id
+      <where>
+        tth.tran_id = #{tranId,jdbcType=INTEGER}
+        ${filterSQL}
+      </where>
+
+
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_tran_history
     where id = #{id,jdbcType=INTEGER}
   </delete>

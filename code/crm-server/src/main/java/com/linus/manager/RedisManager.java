@@ -4,6 +4,8 @@ import jakarta.annotation.Resource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
 @Component
@@ -24,5 +26,15 @@ public class RedisManager {
         Object[] t = new Object[data.size()];
         data.toArray(t);
         return redisTemplate.opsForList().leftPushAll(key,t);
+    }
+
+    public String getOnlyNumber(String key) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
+        String formattedDateTime = localDateTime.format(formatter);
+
+        //從redis中獲取一個自增值，這個自增值每次都是不重複的
+        Long incrValue = redisTemplate.opsForValue().increment(key);
+        return formattedDateTime + incrValue;
     }
 }

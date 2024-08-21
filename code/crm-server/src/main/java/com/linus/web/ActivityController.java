@@ -3,7 +3,6 @@ package com.linus.web;
 import com.github.pagehelper.PageInfo;
 import com.linus.model.TActivity;
 import com.linus.query.ActivityQuery;
-import com.linus.query.UserQuery;
 import com.linus.result.R;
 import com.linus.service.ActivityService;
 import jakarta.annotation.Resource;

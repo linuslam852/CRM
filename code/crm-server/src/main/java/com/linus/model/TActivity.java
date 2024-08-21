@@ -6,63 +6,61 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 市场活动表
+ * 市場活動表
  * t_activity
  */
 @Data
 public class TActivity implements Serializable {
-    /**
-     * 主键，自动增长，活动ID
-     */
+
     private Integer id;
 
     /**
-     * 活动所属人ID
+     * 活動人ID
      */
     private Integer ownerId;
 
     /**
-     * 活动名称
+     * 活動名稱
      */
     private String name;
 
     /**
-     * 活动开始时间
+     * 活動開始時間
      */
     private Date startTime;
 
     /**
-     * 活动结束时间
+     * 活動結束時間
      */
     private Date endTime;
 
     /**
-     * 活动预算
+     * 活動預算
      */
     private BigDecimal cost;
 
     /**
-     * 活动描述
+     * 活動描述
      */
     private String description;
 
     /**
-     * 活动创建时间
+     * 活動創建時間
      */
     private Date createTime;
 
     /**
-     * 活动创建人
+     * 活動創建人
      */
     private Integer createBy;
 
     /**
-     * 活动编辑时间
+     * 活動編輯時間
      */
     private Date editTime;
 
     /**
-     * 活动编辑人
+     * 活動編輯人
      */
     private Integer editBy;
 

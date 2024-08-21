@@ -96,7 +96,7 @@ export default {
         </el-form-item>
 
         <el-form-item label="密碼" prop="loginPwd">
-          <el-input type="password" v-model="user.loginPwd" />
+          <el-input type="password" v-model="user.loginPwd" @keydown.enter="login"/>
         </el-form-item>
 
         <el-form-item>

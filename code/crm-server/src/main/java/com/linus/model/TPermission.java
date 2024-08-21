@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * 权限表
+ * 權限表
  * t_permission
  */
 @Data

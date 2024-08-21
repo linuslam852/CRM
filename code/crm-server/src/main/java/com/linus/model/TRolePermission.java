@@ -4,7 +4,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * 角色权限关系表
+ * 角色權限關係表
  * t_role_permission
  */
 @Data

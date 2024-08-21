@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 系统信息表
+ * 系統信息表
  * t_system_info
  */
 @Data

@@ -1,9 +1,7 @@
 package com.linus.web;
 
 import com.github.pagehelper.PageInfo;
-import com.linus.model.TActivity;
 import com.linus.model.TClue;
-import com.linus.query.ActivityQuery;
 import com.linus.query.ClueQuery;
 import com.linus.result.R;
 import com.linus.service.ClueService;

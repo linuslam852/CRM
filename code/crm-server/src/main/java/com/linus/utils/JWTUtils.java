@@ -8,7 +8,6 @@ import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class JWTUtils {

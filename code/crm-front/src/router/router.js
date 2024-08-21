@@ -69,6 +69,11 @@ let router = createRouter({
                     path:'customer/detail/:id',
                     component: () => import('../view/CustomerDetailView.vue'),
                 },
+                {
+                    path:'tran/detail/:id',
+                    component: () => import('../view/TranDetailView.vue'),
+                },
+
             ]
         },
     ]

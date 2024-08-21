@@ -203,20 +203,12 @@ export default {
       </el-select>
     </el-form-item>
 
-    <el-form-item label="手機" v-if="clueQuery.id > 0"><!--此时是编辑-->
+    <el-form-item label="手機" v-if="clueQuery.id > 0">
       <el-input v-model="clueQuery.phone" disabled/>
     </el-form-item>
 
-    <el-form-item label="手機" prop="phone" v-else><!--此时是录入-->
+    <el-form-item label="手機" prop="phone" v-else>
       <el-input v-model="clueQuery.phone"/>
-    </el-form-item>
-
-    <el-form-item label="微信">
-      <el-input v-model="clueQuery.weixin"/>
-    </el-form-item>
-
-    <el-form-item label="QQ" prop="qq">
-      <el-input v-model="clueQuery.qq"/>
     </el-form-item>
 
     <el-form-item label="郵箱" prop="email">

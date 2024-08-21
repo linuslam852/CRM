@@ -2,13 +2,11 @@ package com.linus.web;
 
 import com.github.pagehelper.PageInfo;
 import com.linus.model.TTran;
-import com.linus.model.TUser;
+import com.linus.query.TranQuery;
 import com.linus.result.R;
 import com.linus.service.TranService;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class TranController {
@@ -23,5 +21,19 @@ public class TranController {
         PageInfo<TTran> pageInfo = tranService.getTranByPage(current);
 
         return R.OK(pageInfo);
+    }
+
+    @PostMapping("/api/customer/tran")
+    public R createTran(@RequestBody TranQuery tranQuery, @RequestHeader("Authorization") String token){
+        tranQuery.setToken(token);
+        int result = tranService.createTran(tranQuery);
+        return result >= 1 ? R.OK() : R.FAIL();
+    }
+
+
+    @GetMapping("/api/tran/detail/{id}")
+    public R loadCustomer(@PathVariable("id")Integer id){
+        TTran tTran = tranService.getTranById(id);
+        return R.OK(tTran);
     }
 }

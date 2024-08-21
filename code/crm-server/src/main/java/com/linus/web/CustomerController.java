@@ -3,7 +3,6 @@ package com.linus.web;
 import com.alibaba.excel.EasyExcel;
 import com.github.pagehelper.PageInfo;
 import com.linus.constant.Constants;
-import com.linus.model.TClue;
 import com.linus.model.TCustomer;
 import com.linus.query.CustomerQuery;
 import com.linus.result.CustomerExcel;
@@ -11,7 +10,6 @@ import com.linus.result.R;
 import com.linus.service.CustomerService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +58,7 @@ public class CustomerController {
 
 
     @GetMapping("/api/customer/detail/{id}")
-    public R loadClue(@PathVariable("id")Integer id){
+    public R loadCustomer(@PathVariable("id")Integer id){
         TCustomer tCustomer = customerService.getCustomerById(id);
         return R.OK(tCustomer);
     }

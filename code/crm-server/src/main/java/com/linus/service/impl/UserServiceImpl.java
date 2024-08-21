@@ -149,7 +149,7 @@ public class UserServiceImpl implements UserService {
 
         },
         ()->{
-            return (List<TUser>) tUserMapper.selectByOwner();
+            return tUserMapper.selectByOwner();
         },
         (t)->{
             redisManager.setValue(Constants.REDIS_OWNER_KEY,t);

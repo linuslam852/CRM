@@ -8,8 +8,6 @@
     <result column="full_name" jdbcType="VARCHAR" property="fullName" />
     <result column="appellation" jdbcType="INTEGER" property="appellation" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="weixin" jdbcType="VARCHAR" property="weixin" />
-    <result column="qq" jdbcType="VARCHAR" property="qq" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="job" jdbcType="VARCHAR" property="job" />
@@ -35,8 +33,6 @@
     <result column="full_name" jdbcType="VARCHAR" property="fullName" />
     <result column="appellation" jdbcType="INTEGER" property="appellation" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="weixin" jdbcType="VARCHAR" property="weixin" />
-    <result column="qq" jdbcType="VARCHAR" property="qq" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="job" jdbcType="VARCHAR" property="job" />
@@ -97,7 +93,7 @@
   
   
   <sql id="Base_Column_List">
-    id, owner_id, activity_id, full_name, appellation, phone, weixin, qq, email, age, 
+    id, owner_id, activity_id, full_name, appellation, phone, email, age,
     job, year_income, address, need_loan, intention_state, intention_product, `state`, 
     `source`, description, next_contact_time, create_time, create_by, edit_time, edit_by
   </sql>
@@ -197,16 +193,14 @@
 
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.linus.model.TClue" useGeneratedKeys="true">
     insert into t_clue (owner_id, activity_id, full_name, 
-      appellation, phone, weixin, 
-      qq, email, age, job, 
+      appellation, phone, email, age, job,
       year_income, address, need_loan, 
       intention_state, intention_product, `state`, 
       `source`, description, next_contact_time, 
       create_time, create_by, edit_time, 
       edit_by)
     values (#{ownerId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{fullName,jdbcType=VARCHAR}, 
-      #{appellation,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR}, 
-      #{qq,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{job,jdbcType=VARCHAR}, 
+      #{appellation,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{job,jdbcType=VARCHAR},
       #{yearIncome,jdbcType=DECIMAL}, #{address,jdbcType=VARCHAR}, #{needLoan,jdbcType=INTEGER}, 
       #{intentionState,jdbcType=INTEGER}, #{intentionProduct,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
       #{source,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{nextContactTime,jdbcType=TIMESTAMP}, 
@@ -230,12 +224,6 @@
       </if>
       <if test="phone != null">
         phone,
-      </if>
-      <if test="weixin != null">
-        weixin,
-      </if>
-      <if test="qq != null">
-        qq,
       </if>
       <if test="email != null">
         email,
@@ -302,12 +290,6 @@
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
       </if>
-      <if test="weixin != null">
-        #{weixin,jdbcType=VARCHAR},
-      </if>
-      <if test="qq != null">
-        #{qq,jdbcType=VARCHAR},
-      </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
@@ -361,8 +343,7 @@
 
   <insert id="saveClue" keyColumn="id" keyProperty="id" parameterType="com.linus.model.TClue" useGeneratedKeys="true">
     insert into t_clue (owner_id, activity_id, full_name,
-                        appellation, phone, weixin,
-                        qq, email, age, job,
+                        appellation, phone, email, age, job,
                         year_income, address, need_loan,
                         intention_state, intention_product, `state`,
                         `source`, description, next_contact_time,
@@ -371,8 +352,7 @@
     values 
         <foreach collection="tClueList" item="tClue" separator=",">
         (#{tClue.ownerId,jdbcType=INTEGER}, #{tClue.activityId,jdbcType=INTEGER}, #{tClue.fullName,jdbcType=VARCHAR},
-            #{tClue.appellation,jdbcType=INTEGER}, #{tClue.phone,jdbcType=VARCHAR}, #{tClue.weixin,jdbcType=VARCHAR},
-            #{tClue.qq,jdbcType=VARCHAR}, #{tClue.email,jdbcType=VARCHAR}, #{tClue.age,jdbcType=INTEGER}, #{tClue.job,jdbcType=VARCHAR},
+            #{tClue.appellation,jdbcType=INTEGER}, #{tClue.phone,jdbcType=VARCHAR}, #{tClue.email,jdbcType=VARCHAR}, #{tClue.age,jdbcType=INTEGER}, #{tClue.job,jdbcType=VARCHAR},
             #{tClue.yearIncome,jdbcType=DECIMAL}, #{tClue.address,jdbcType=VARCHAR}, #{tClue.needLoan,jdbcType=INTEGER},
             #{tClue.intentionState,jdbcType=INTEGER}, #{tClue.intentionProduct,jdbcType=INTEGER}, #{tClue.state,jdbcType=INTEGER},
             #{tClue.source,jdbcType=INTEGER}, #{tClue.description,jdbcType=VARCHAR}, #{tClue.nextContactTime,jdbcType=TIMESTAMP},
@@ -399,12 +379,6 @@
       </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="weixin != null">
-        weixin = #{weixin,jdbcType=VARCHAR},
-      </if>
-      <if test="qq != null">
-        qq = #{qq,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
@@ -464,8 +438,6 @@
       full_name = #{fullName,jdbcType=VARCHAR},
       appellation = #{appellation,jdbcType=INTEGER},
       phone = #{phone,jdbcType=VARCHAR},
-      weixin = #{weixin,jdbcType=VARCHAR},
-      qq = #{qq,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
       job = #{job,jdbcType=VARCHAR},

@@ -29,7 +29,7 @@
     <result column="create_by" jdbcType="INTEGER" property="createBy" />
     <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
     <result column="edit_by" jdbcType="INTEGER" property="editBy" />
-      <association property="clueDO" javaType="com.linus.model.TClue">
+    <association property="clueDO" javaType="com.linus.model.TClue">
       <id column="clueId" jdbcType="INTEGER" property="id" />
       <result column="full_name" jdbcType="VARCHAR" property="fullName" />
       <result column="phone" jdbcType="INTEGER" property="phone" />
@@ -43,6 +43,10 @@
     <association property="editByDO" javaType="com.linus.model.TUser">
       <id column="editById" jdbcType="INTEGER" property="id" />
       <result column="editByName" jdbcType="VARCHAR" property="name" />
+    </association>
+    <association property="stageDO" javaType="com.linus.model.TDicValue">
+      <id column="stageId" jdbcType="INTEGER" property="id" />
+      <result column="stageName" jdbcType="VARCHAR" property="typeValue" />
     </association>
   </resultMap>
 
@@ -87,12 +91,26 @@
     <select id="selectTranByPage" resultMap="TranResultMap">
       select
         tt.*,
-        tc.id clueId, tc.full_name, tc.phone
+        tc.id clueId, tc.full_name, tc.phone,
+        tdv.id stageId, tdv.type_value stageName
       from t_tran tt left join t_customer tct on tt.customer_id = tct.id
                      left join t_clue tc on tct.clue_id = tc.id
+                     left join t_dic_value tdv on tt.stage = tdv.id
       <where>
         ${filterSQL}
       </where>
+    </select>
+
+    <select id="selectDetailById" parameterType="java.lang.Integer" resultMap="TranResultMap">
+      select
+        tt.*,
+        tu1.id createById, tu1.name createByName,
+        tu2.id editById, tu2.name editByName,
+        tdv.id stageId, tdv.type_value stageName
+      from t_tran tt left join t_user tu1 on tt.create_by = tu1.id
+                     left join t_user tu2 on tt.edit_by = tu2.id
+                     left join t_dic_value tdv on tt.stage = tdv.id
+      where tt.id = #{tranId, jdbcType=INTEGER}
     </select>
 
 

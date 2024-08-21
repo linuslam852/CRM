@@ -1,6 +1,9 @@
 package com.linus.mapper;
 
 import com.linus.model.TTranHistory;
+import com.linus.query.TranHistoryQuery;
+
+import java.util.List;
 
 public interface TTranHistoryMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface TTranHistoryMapper {
     int updateByPrimaryKeySelective(TTranHistory record);
 
     int updateByPrimaryKey(TTranHistory record);
+
+    List<TTranHistory> getTranHistoryByPage(TranHistoryQuery tranHistoryQuery);
 }
