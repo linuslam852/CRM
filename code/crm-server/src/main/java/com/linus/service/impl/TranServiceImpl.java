@@ -45,7 +45,7 @@ public class TranServiceImpl implements TranService {
         TTran tTran = new TTran();
         BeanUtils.copyProperties(tranQuery,tTran);
 
-        String tranNo = redisManager.getOnlyNumber(Constants.REDIS_ONLY_NUMBER_KEY); //獲取唯一性的交易流水號
+        String tranNo = redisManager.getUniqueNumber(Constants.REDIS_ONLY_NUMBER_KEY); //獲取唯一性的交易流水號
         tTran.setTranNo(tranNo);
 
         tTran.setCreateTime(new Date());

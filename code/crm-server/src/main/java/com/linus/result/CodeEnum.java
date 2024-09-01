@@ -17,7 +17,8 @@ public enum CodeEnum {
     LOGOUT_SUCCESS(200,"退出成功"),
     DATA_ACCESS_EXCEPTION(500,"數據庫操作失敗"),
     ACCESS_DENIED(500,"抱歉，你沒有權限訪問"),
-
+    WRONG_PASSWORD(500,"密碼錯誤"),
+    PASSWORD_IS_EMPTY(500,"密碼為空"),
     ;
 
     private int code;

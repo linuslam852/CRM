@@ -63,9 +63,11 @@ export default {
       })
     },
 
+    //免登入（自動登入）
     freeLogin(){
       let token = window.localStorage.getItem(getTokenName());
       if(token){
+        //需要自動登入，不需要用帳號去數據庫查詢，只需要將token發送給後台，後台驗證一下token如果是合法的，就自動完成登入
         doGet("/api/login/free",{}).then(resp=>{
           if(resp.data.code === 200){
             window.localStorage.href = "/dashboard";

@@ -2,6 +2,7 @@ package com.linus.web;
 
 import com.github.pagehelper.PageInfo;
 import com.linus.model.TUser;
+import com.linus.query.PasswordQuery;
 import com.linus.query.UserQuery;
 import com.linus.result.R;
 import com.linus.service.UserService;
@@ -82,4 +83,9 @@ public class UserController {
         return R.OK(ownerList);
     }
 
+    @PutMapping("/api/user/password")
+    public R changePassword(@RequestBody PasswordQuery passwordQuery){
+        return userService.changePwd(passwordQuery);
+
+    }
 }

@@ -28,7 +28,7 @@ public class RedisManager {
         return redisTemplate.opsForList().leftPushAll(key,t);
     }
 
-    public String getOnlyNumber(String key) {
+    public String getUniqueNumber(String key) {
         LocalDateTime localDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
         String formattedDateTime = localDateTime.format(formatter);

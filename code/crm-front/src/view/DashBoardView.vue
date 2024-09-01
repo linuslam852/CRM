@@ -1,5 +1,5 @@
 <script>
-import {doGet} from "../http/httpRequest.js";
+import {doGet, doPut} from "../http/httpRequest.js";
 import {
   ArrowDown,
   Box,
@@ -26,6 +26,22 @@ export default {
       //控制主體內容是否顯示
       isRouterAlive: true,
       currentRouterPath:'',
+      changePwdDialogVisible:false,
+      changePwdDetail : {},
+      changePwdRules:{
+        oldPwd:[
+          { required: true, message: '請輸入舊密碼', trigger: 'blur' },
+          { min: 6, max: 16, message: '密碼長度應為6-16位', trigger: 'blur' },
+        ],
+        newPwd:[
+          { required: true, message: '請輸入新密碼', trigger: 'blur' },
+          { min: 6, max: 16, message: '密碼長度應為6-16位', trigger: 'blur' },
+        ],
+        newPwdConfirm:[
+          { required: true, message: '請再次輸入新密碼', trigger: 'blur' },
+          { min: 6, max: 16, message: '密碼長度應為6-16位', trigger: 'blur' },
+        ],
+      },
     }
   },
 
@@ -84,7 +100,37 @@ export default {
           })
         }
       })
-    }
+    },
+
+    changePassWord(){
+      this.changePwdDetail = {};
+      this.changePwdDialogVisible = true;
+    },
+
+    changePasswordSubmit(){
+      this.$refs.changePwdRefForm.validate((isValid) =>{
+        if(isValid){
+          if(this.changePwdDetail.newPwd === this.changePwdDetail.newPwdConfirm){
+            doPut("/api/user/password",{
+              loginAct: this.user.loginAct,
+              oldPwd: this.changePwdDetail.oldPwd,
+              newPwd: this.changePwdDetail.newPwd
+            }).then(resp=>{
+              if(resp.data.code === 200){
+                messageTip("修改成功,請重新登入","success");
+                this.changePwdDialogVisible = false;
+                setTimeout(()=>{this.logout()},2000);
+              }else{
+                messageTip("修改失敗， 原因" + resp.data.msg,"error");
+              }
+            })
+          }else{
+            messageTip("兩次密碼不相同,請重新輸入","error");
+            this.changePwdDetail = {};
+          }
+        }
+      })
+    },
   }
 }
 </script>
@@ -133,7 +179,7 @@ export default {
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item>我的資料</el-dropdown-item>
-              <el-dropdown-item>修改密碼</el-dropdown-item>
+              <el-dropdown-item @click="changePassWord()">修改密碼</el-dropdown-item>
               <el-dropdown-item divided @click="logout()">退出登入</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -148,6 +194,31 @@ export default {
       <el-footer>@Copyright 2024 萊納斯學習用途</el-footer>
     </el-container>
   </el-container>
+
+  <el-dialog v-model="changePwdDialogVisible" title="修改密碼" width="55%" center>
+    <el-form ref="changePwdRefForm" :model="changePwdDetail" label-width="110px" :rules="changePwdRules">
+
+      <el-form-item label="舊密碼" prop="oldPwd">
+        <el-input type="password" v-model="changePwdDetail.oldPwd"/>
+      </el-form-item>
+
+      <el-form-item label="新密碼" prop="newPwd">
+        <el-input type="password" v-model="changePwdDetail.newPwd"/>
+      </el-form-item>
+
+      <el-form-item label="確認密碼" prop="newPwdConfirm">
+        <el-input type="password" v-model="changePwdDetail.newPwdConfirm"/>
+      </el-form-item>
+
+    </el-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="changePwdDialogVisible = false">關 閉</el-button>
+        <el-button type="primary" @click="changePasswordSubmit">提 交</el-button>
+      </span>
+    </template>
+  </el-dialog>
+
 </template>
 
 <style scoped>

@@ -11,11 +11,15 @@ import com.linus.model.TPermission;
 import com.linus.model.TRole;
 import com.linus.model.TUser;
 import com.linus.query.BaseQuery;
+import com.linus.query.PasswordQuery;
 import com.linus.query.UserQuery;
+import com.linus.result.CodeEnum;
+import com.linus.result.R;
 import com.linus.service.UserService;
 import com.linus.utils.CacheUtils;
 import com.linus.utils.JSONUtil;
 import com.linus.utils.JWTUtils;
+import com.linus.utils.ResponseUtils;
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,10 +29,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -155,5 +159,23 @@ public class UserServiceImpl implements UserService {
             redisManager.setValue(Constants.REDIS_OWNER_KEY,t);
         });
 
+    }
+
+    @Override
+    public R changePwd(PasswordQuery passwordQuery) {
+        String oldPwd = passwordQuery.getOldPwd();
+        String newPwd = passwordQuery.getNewPwd();
+        TUser tUser = tUserMapper.selectByLoginAct(passwordQuery.getLoginAct());
+
+        if(!(StringUtils.hasText(oldPwd) && StringUtils.hasText(newPwd))){
+            return R.FAIL(CodeEnum.PASSWORD_IS_EMPTY);
+        }
+        if(!passwordEncoder.matches(oldPwd,tUser.getLoginPwd())) {
+            return R.FAIL(CodeEnum.WRONG_PASSWORD);
+        }
+        //加密密碼
+        tUser.setLoginPwd(passwordEncoder.encode(newPwd));
+        int result = tUserMapper.updateByPrimaryKeySelective(tUser);
+        return result >= 1 ? R.OK() : R.FAIL();
     }
 }
